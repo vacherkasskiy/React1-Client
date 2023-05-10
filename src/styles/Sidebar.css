@@ -1,0 +1,22 @@
+.sidebar {
+    height: fit-content;
+    padding: 20px;
+    background-color: #1e232a;
+    border-radius: 10px;
+}
+
+.sidebar__section {
+    cursor: pointer;
+    color: white;
+    font-size: 15px;
+    font-family: sans-serif;
+
+    margin: 5px 0;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.sidebar__section:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
