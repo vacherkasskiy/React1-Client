@@ -9,7 +9,7 @@ header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(17, 19, 24, 0.6);
+    background-color: rgba(17, 19, 24, 0.9);
     box-shadow: 0 0 0 1px hsl(360,0%,0%,0),0px 5px 10px 0px hsl(218,20%,10%,0.5);
 }
 

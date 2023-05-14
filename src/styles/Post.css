@@ -1,0 +1,35 @@
+.post {
+    margin: 10px 0;
+    display: flex;
+    flex-direction: row;
+}
+
+.post:nth-child(4) {
+    margin-top: 50px;
+}
+
+.post__avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.post__text {
+    margin-left: 20px;
+    padding: 10px;
+    width: 100%;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 16px;
+    font-family: sans-serif;
+    background-color: #262c34;
+    border-radius: 5px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.post__text span {
+    margin-bottom: 10px;
+    display: block;
+    color: red;
+    font-weight: 600;
+}
