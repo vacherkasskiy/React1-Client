@@ -6,13 +6,16 @@ import "./styles/main.css";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Content from "./components/Content";
+import {BrowserRouter} from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Header/>
-    <Sidebar/>
-    <Content/>
+    <BrowserRouter>
+        <Header/>
+        <Sidebar/>
+        <Content/>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

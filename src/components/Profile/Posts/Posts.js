@@ -1,4 +1,4 @@
-import "../styles/Posts.css";
+import "../../../styles/Profile/Posts/Posts.css";
 import Post from "./Post";
 
 function Posts() {

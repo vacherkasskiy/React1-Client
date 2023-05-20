@@ -7,8 +7,8 @@
 
 .sidebar__section {
     cursor: pointer;
-    color: white;
-    font-size: 15px;
+    color: white !important;
+    font-size: 15px !important;
     font-family: sans-serif;
 
     margin: 5px 0;

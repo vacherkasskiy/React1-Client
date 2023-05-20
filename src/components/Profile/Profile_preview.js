@@ -1,5 +1,5 @@
-import "../styles/Profile_preview.css";
-import avatar from "../pictures/man.png"
+import "../../styles/Profile/Profile_preview.css";
+import avatar from "../../pictures/man.png"
 
 function Profile_preview() {
     return(

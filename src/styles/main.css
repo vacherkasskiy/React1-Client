@@ -1,11 +1,15 @@
 body {
     padding: 90px 40px 50px 40px;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #363c48;
 }
 
 #root {
     width: 100%;
+    max-width: 1800px;
     height: 100%;
     display: grid;
     grid-template-columns: 1fr 4fr;

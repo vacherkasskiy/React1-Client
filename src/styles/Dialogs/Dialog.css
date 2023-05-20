@@ -1,0 +1,43 @@
+.dialog {
+    cursor: pointer;
+    margin: 5px 0;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: row;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+.dialog:hover {
+    background-color: #262c34;
+}
+
+.dialog__avatar {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.dialog__body {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.dialog__name {
+    font-size: 16px;
+    font-family: sans-serif;
+    color: white;
+    font-weight: 600;
+}
+
+.dialog__text {
+    width: 60vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 16px;
+    font-family: sans-serif;
+}

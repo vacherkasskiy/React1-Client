@@ -1,4 +1,4 @@
-import "../styles/Post.css";
+import "../../../styles/Profile/Posts/Post.css";
 
 function Post(props) {
     return (

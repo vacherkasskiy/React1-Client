@@ -1,12 +1,14 @@
-import "../styles/Content.css";
-import ProfilePreview from "./Profile_preview";
-import Posts from "./Posts";
+import Profile from "./Profile/Profile";
+import {Route, Routes} from "react-router-dom";
+import Dialogs from "./Dialogs/Dialogs";
 
 function Content() {
-    return(
+    return (
         <div className={"content"}>
-            <ProfilePreview/>
-            <Posts/>
+            <Routes>
+                <Route path={'/profile'} element={<Profile/>}/>
+                <Route path={'/messages'} element={<Dialogs/>}/>
+            </Routes>
         </div>
     );
 }
