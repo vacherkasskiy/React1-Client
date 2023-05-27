@@ -1,0 +1,39 @@
+.new_message {
+    padding: 10px;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.new_message textarea {
+    outline: none !important;
+    resize: none !important;
+    padding: 10px;
+    width: 80%;
+    height: 60px;
+    overflow: auto;
+    font-family: sans-serif;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: #262c34;
+    border: #363c48 2px solid;
+    border-radius: 5px;
+}
+
+.new_message textarea::-webkit-scrollbar {
+    display: none;
+}
+
+.new_message button {
+    margin-left: 10px;
+    padding: 18px;
+    color: #7e7e7e;
+    font-size: 15px;
+    font-family: sans-serif;
+    font-weight: 600;
+    border-radius: 5px;
+    border: 2px #363c48 solid;
+}

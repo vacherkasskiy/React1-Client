@@ -1,6 +1,7 @@
 import Profile from "./Profile/Profile";
 import {Route, Routes} from "react-router-dom";
 import Dialogs from "./Dialogs/Dialogs";
+import Messages from "./MessagesPage/Messages";
 
 function Content() {
     return (
@@ -8,6 +9,7 @@ function Content() {
             <Routes>
                 <Route path={'/profile'} element={<Profile/>}/>
                 <Route path={'/messages'} element={<Dialogs/>}/>
+                <Route path="/messages/:id" element={<Messages />} />
             </Routes>
         </div>
     );

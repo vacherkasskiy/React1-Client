@@ -1,0 +1,18 @@
+.messages_wrapper {
+    overflow: auto;
+    height: 73vh;
+    border: #363c48 2px solid;
+    border-radius: 5px;
+}
+
+.messages_wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.messages {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}

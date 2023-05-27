@@ -1,4 +1,6 @@
 .content {
+    /*overflow: auto;*/
+    position: relative;
     padding: 30px;
     display: flex;
     flex-direction: column;
