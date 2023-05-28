@@ -3,7 +3,7 @@ import logo from "../pictures/apple.png"
 import avatar from "../pictures/man.png"
 
 function Header() {
-    return(
+    return (
         <header>
             <img className={"header__logo"} src={logo} alt=""/>
             <img className={"header__avatar"} src={avatar} alt=""/>

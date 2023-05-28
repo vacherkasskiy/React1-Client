@@ -1,7 +1,7 @@
 import "../../styles/Messages/NewMessage.css";
 
 function NewMessage() {
-    return(
+    return (
         <div className="new_message">
             <textarea name="" id="" cols="30" rows="10"></textarea>
             <button>Send</button>

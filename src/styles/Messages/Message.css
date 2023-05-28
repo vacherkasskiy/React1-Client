@@ -31,7 +31,7 @@
     border-radius: 5px;
 }
 
-.message_wrapper.owner .message{
+.message_wrapper.owner .message {
     padding: 10px 10px 30px 10px;
 }
 
@@ -50,7 +50,7 @@
     font-family: sans-serif;
 }
 
-.message_wrapper.owner .message__time{
+.message_wrapper.owner .message__time {
     right: unset !important;
     left: 5px;
 }
