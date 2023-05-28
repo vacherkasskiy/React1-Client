@@ -14,7 +14,6 @@ class DialogData {
         this.latestMessage = latestMessage;
         this.id = id;
     }
-
 }
 
 class MessageData {
@@ -43,7 +42,6 @@ class UserData {
         this.education = education;
         this.website = website;
     }
-
 }
 
 let dialogsData = [

@@ -8,7 +8,7 @@ function Posts(props) {
             <h1 className={"posts__header"}>Posts</h1>
             <textarea placeholder={"New post..."} className={"posts__new-post"}></textarea>
             <button className={"posts__save-post"}>Post</button>
-            { props.data.map(x => <Post obj={x}/>) }
+            {props.data.map(x => <Post obj={x}/>)}
         </div>
     );
 }
