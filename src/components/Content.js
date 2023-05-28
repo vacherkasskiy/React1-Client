@@ -9,7 +9,7 @@ function Content() {
             <Routes>
                 <Route path={'/profile'} element={<Profile/>}/>
                 <Route path={'/messages'} element={<Dialogs/>}/>
-                <Route path="/messages/:id" element={<Messages />} />
+                <Route path="/messages/:dialogId" element={<Messages />} />
             </Routes>
         </div>
     );

@@ -32,15 +32,7 @@ function Dialogs() {
 
     return (
         <div className="dialogs">
-            <Dialog
-                obj={dialogsData[0]}
-            />
-            <Dialog
-                obj={dialogsData[1]}
-            />
-            <Dialog
-                obj={dialogsData[2]}
-            />
+            { dialogsData.map(x => <Dialog obj={x} />) }
         </div>
     );
 }

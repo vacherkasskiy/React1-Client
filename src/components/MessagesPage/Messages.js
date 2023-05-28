@@ -21,35 +21,35 @@ function Messages() {
             false,
             "Some text here",
             Date.now(),
-            dialogId,
+            "1",
             1
         ),
         new MessageData(
             false,
             "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda magni saepe veritatis. Ad animi, assumenda atque consequuntur, deserunt, distinctio esse est libero mollitia nobis numquam odit officia quam rerum saepe!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda magni saepe veritatis. Ad animi, assumenda atque consequuntur, deserunt, distinctio esse est libero mollitia nobis numquam odit officia quam rerum saepe!",
             Date.now(),
-            dialogId,
+            "1",
             2
         ),
         new MessageData(
             false,
             "Some text here",
             Date.now(),
-            dialogId,
+            "2",
             3
         ),
         new MessageData(
             true,
             "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda magni saepe veritatis. Ad animi, assumenda atque consequuntur, deserunt, distinctio esse est libero mollitia nobis numquam odit officia quam rerum saepe!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda magni saepe veritatis. Ad animi, assumenda atque consequuntur, deserunt, distinctio esse est libero mollitia nobis numquam odit officia quam rerum saepe!",
             Date.now(),
-            dialogId,
+            "2",
             4
         ),
         new MessageData(
             false,
             "Let's have a walk!",
             Date.now(),
-            dialogId,
+            "3",
             5
         )
     ];
@@ -57,21 +57,7 @@ function Messages() {
     return(
         <div className="messages_wrapper">
             <div className="messages">
-                <Message
-                    obj={messagesData[0]}
-                />
-                <Message
-                    obj={messagesData[1]}
-                />
-                <Message
-                    obj={messagesData[2]}
-                />
-                <Message
-                    obj={messagesData[3]}
-                />
-                <Message
-                    obj={messagesData[4]}
-                />
+                { messagesData.map(x => (x.dialogId === dialogId ? <Message obj={x} /> : "")) }
             </div>
             <NewMessage />
         </div>
