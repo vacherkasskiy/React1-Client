@@ -1,3 +1,5 @@
+import render from "../render";
+
 class Data {
     constructor(dialogsData, messagesData, postsData, userData) {
         this.dialogsData = dialogsData;
@@ -16,7 +18,7 @@ class DialogData {
     }
 }
 
-export class MessageData {
+class MessageData {
     constructor(isOwner, text, dateTime, dialogId, id) {
         this.isOwner = isOwner;
         this.text = text;
@@ -26,12 +28,36 @@ export class MessageData {
     }
 }
 
-export class PostData {
+export function AddNewMessage(text, dialogId, id) {
+    let newMessage = new MessageData(
+        true,
+        text,
+        "20:07",
+        dialogId,
+        id
+    );
+
+    messagesData.push(newMessage);
+    render();
+}
+
+class PostData {
     constructor(message, name, img) {
         this.message = message;
         this.name = name;
         this.img = img;
     }
+}
+
+export function AddNewPost(message, name, img) {
+    let newPost = new PostData(
+        message,
+        name,
+        img
+    );
+
+    postsData.push(newPost);
+    render();
 }
 
 class UserData {

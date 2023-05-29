@@ -1,22 +1,19 @@
 import "../../styles/Messages/NewMessage.css";
 import React from "react";
-import {MessageData} from "../../data/data";
-import render from "../../render";
+import {AddNewMessage} from "../../data/data";
 
 function NewMessage(props) {
     let newMessageTextarea = React.createRef();
     let createNewMessage = () => {
         let value = newMessageTextarea.current.value;
 
-        props.data.push(new MessageData(
+        AddNewMessage(
             true,
             value,
             "20:05",
             "" + props.dialogId,
             props.data.length
-        ));
-
-        render();
+        );
     };
 
     return (

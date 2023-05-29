@@ -1,22 +1,19 @@
 import "../../../styles/Profile/Posts/Posts.css";
 import Post from "./Post";
 import React from "react";
-import {PostData} from "../../../data/data";
+import {AddNewPost} from "../../../data/data";
 import avatar from "../../../pictures/man.png"
-import render from "../../../render";
 
 function Posts(props) {
     let newPostTextarea = React.createRef();
     let createNewPost = () => {
         let value = newPostTextarea.current.value;
 
-        props.postsData.push(new PostData(
+        AddNewPost(
             value,
             props.userData.name,
             avatar
-        ));
-
-        render();
+        );
     };
 
     return (
