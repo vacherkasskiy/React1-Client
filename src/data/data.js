@@ -1,4 +1,8 @@
-import render from "../render";
+let render = () => {};
+
+export let subscribe = (renderDOM) => {
+    render = renderDOM;
+}
 
 class Data {
     constructor(
