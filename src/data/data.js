@@ -1,4 +1,5 @@
-let render = () => {};
+let render = () => {
+};
 
 export let subscribe = (renderDOM) => {
     render = renderDOM;
@@ -12,6 +13,7 @@ class Data {
         userData,
         newMessages,
         newPosts) {
+
         this.dialogsData = dialogsData;
         this.messagesData = messagesData;
         this.postsData = postsData;
