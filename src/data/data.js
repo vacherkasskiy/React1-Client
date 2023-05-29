@@ -16,7 +16,7 @@ class DialogData {
     }
 }
 
-class MessageData {
+export class MessageData {
     constructor(isOwner, text, dateTime, dialogId, id) {
         this.isOwner = isOwner;
         this.text = text;
@@ -26,7 +26,7 @@ class MessageData {
     }
 }
 
-class PostData {
+export class PostData {
     constructor(message, name, img) {
         this.message = message;
         this.name = name;
@@ -97,7 +97,7 @@ let messagesData = [
         Date.now(),
         "3",
         5
-    )
+    ),
 ];
 
 let userData = new UserData(
@@ -126,8 +126,6 @@ let postsData = [
     )
 ];
 
-function GetData() {
+export function GetData() {
     return new Data(dialogsData, messagesData, postsData, userData);
 }
-
-export default GetData;

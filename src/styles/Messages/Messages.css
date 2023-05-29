@@ -3,9 +3,6 @@
     height: 73vh;
     border: #363c48 2px solid;
     border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
 }
 
 .messages_wrapper::-webkit-scrollbar {
@@ -14,8 +11,8 @@
 
 .messages {
     width: 100%;
-    height: fit-content;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: flex-end;
 }
