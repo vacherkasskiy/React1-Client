@@ -15,7 +15,8 @@ function Content(props) {
                     data={props.data.dialogsData}
                 />}/>
                 <Route path="/messages/:dialogId" element={<Messages
-                    data={props.data.messagesData}
+                    messagesData={props.data.messagesData}
+                    newMessages={props.data.newMessages}
                 />}/>
             </Routes>
         </div>

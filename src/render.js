@@ -6,10 +6,13 @@ import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Content from "./components/Content";
 
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
 function Render() {
     let data = GetData();
 
-    const root = ReactDOM.createRoot(document.getElementById('root'));
+    window.data = data;
+
     root.render(
         <React.StrictMode>
             <BrowserRouter>

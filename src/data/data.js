@@ -1,11 +1,19 @@
 import render from "../render";
 
 class Data {
-    constructor(dialogsData, messagesData, postsData, userData) {
+    constructor(
+        dialogsData,
+        messagesData,
+        postsData,
+        userData,
+        newMessages,
+        newPosts) {
         this.dialogsData = dialogsData;
         this.messagesData = messagesData;
         this.postsData = postsData;
         this.userData = userData;
+        this.newMessages = newMessages;
+        this.newPosts = newPosts
     }
 }
 
@@ -28,36 +36,12 @@ class MessageData {
     }
 }
 
-export function AddNewMessage(text, dialogId, id) {
-    let newMessage = new MessageData(
-        true,
-        text,
-        "20:07",
-        dialogId,
-        id
-    );
-
-    messagesData.push(newMessage);
-    render();
-}
-
 class PostData {
     constructor(message, name, img) {
         this.message = message;
         this.name = name;
         this.img = img;
     }
-}
-
-export function AddNewPost(message, name, img) {
-    let newPost = new PostData(
-        message,
-        name,
-        img
-    );
-
-    postsData.push(newPost);
-    render();
 }
 
 class UserData {
@@ -67,6 +51,20 @@ class UserData {
         this.city = city;
         this.education = education;
         this.website = website;
+    }
+}
+
+class NewMessage {
+    constructor(text, userId) {
+        this.text = text;
+        this.userId = userId;
+    }
+}
+
+class NewPost {
+    constructor(text, userId) {
+        this.text = text;
+        this.userId = userId;
     }
 }
 
@@ -126,14 +124,6 @@ let messagesData = [
     ),
 ];
 
-let userData = new UserData(
-    "Cherkasskiy Vitaliy",
-    "4th September",
-    "Moscow",
-    "HSE '25",
-    "https://github.com/vacherkasskiy"
-);
-
 let postsData = [
     new PostData(
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda magni saepe veritatis. Ad animi, assumenda atque consequuntur, deserunt, distinctio esse est libero mollitia nobis numquam odit officia quam rerum saepe!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda magni saepe veritatis. Ad animi, assumenda atque consequuntur, deserunt, distinctio esse est libero mollitia nobis numquam odit officia quam rerum saepe!",
@@ -152,6 +142,57 @@ let postsData = [
     )
 ];
 
+let newMessages = [new NewMessage("", 1)];
+
+let newPosts = [new NewPost("", 1)];
+
+let userData = new UserData(
+    "Cherkasskiy Vitaliy",
+    "4th September",
+    "Moscow",
+    "HSE '25",
+    "https://github.com/vacherkasskiy"
+);
+
+export function UpdateNewMessage(text, userId) {
+    newMessages.find(x => x.userId === userId).text = text;
+    render();
+}
+
+export function AddNewMessage(text, dialogId, id) {
+    let newMessage = new MessageData(
+        true,
+        text,
+        "20:07",
+        dialogId,
+        id
+    );
+
+    messagesData.push(newMessage);
+    render();
+}
+
+export function UpdateNewPost(text, userId) {
+    newPosts.find(x => x.userId === userId).text = text;
+}
+
+export function AddNewPost(message, name, img) {
+    let newPost = new PostData(
+        message,
+        name,
+        img
+    );
+
+    postsData.push(newPost);
+    render();
+}
+
 export function GetData() {
-    return new Data(dialogsData, messagesData, postsData, userData);
+    return new Data(
+        dialogsData,
+        messagesData,
+        postsData,
+        userData,
+        newMessages,
+        newPosts);
 }

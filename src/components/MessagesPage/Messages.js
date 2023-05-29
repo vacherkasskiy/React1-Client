@@ -9,8 +9,12 @@ function Messages(props) {
     return (
         <div className="messages_wrapper">
             <div className="messages">
-                {props.data.map(x => (x.dialogId === dialogId ? <Message obj={x}/> : ""))}
-                <NewMessage data={props.data} dialogId={dialogId}/>
+                {props.messagesData.map(x => (x.dialogId === dialogId ? <Message obj={x}/> : ""))}
+                <NewMessage
+                    messagesData={props.messagesData}
+                    dialogId={dialogId}
+                    newMessages={props.newMessages}
+                />
             </div>
         </div>
     );
