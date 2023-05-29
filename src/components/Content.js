@@ -10,6 +10,7 @@ function Content(props) {
                 <Route path={'/profile'} element={<Profile
                     userData={props.data.userData}
                     postsData={props.data.postsData}
+                    newPosts={props.data.newPosts}
                 />}/>
                 <Route path={'/messages'} element={<Dialogs
                     data={props.data.dialogsData}

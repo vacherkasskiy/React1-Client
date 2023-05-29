@@ -174,6 +174,7 @@ export function AddNewMessage(text, dialogId, id) {
 
 export function UpdateNewPost(text, userId) {
     newPosts.find(x => x.userId === userId).text = text;
+    render();
 }
 
 export function AddNewPost(message, name, img) {

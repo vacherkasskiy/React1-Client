@@ -6,7 +6,11 @@ function Profile(props) {
     return (
         <div className={"content"}>
             <ProfilePreview data={props.userData}/>
-            <Posts postsData={props.postsData} userData={props.userData}/>
+            <Posts
+                postsData={props.postsData}
+                userData={props.userData}
+                newPosts={props.newPosts}
+            />
         </div>
     );
 }
