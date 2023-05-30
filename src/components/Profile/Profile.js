@@ -1,15 +1,13 @@
 import "../../styles/Content.css";
-import ProfilePreview from "./Profile_preview";
+import ProfilePreview from "./ProfilePreview";
 import Posts from "./Posts/Posts";
 
 function Profile(props) {
     return (
         <div className={"content"}>
-            <ProfilePreview data={props.userData}/>
+            <ProfilePreview store={props.store}/>
             <Posts
-                postsData={props.postsData}
-                userData={props.userData}
-                newPosts={props.newPosts}
+                store={props.store}
             />
         </div>
     );

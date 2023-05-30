@@ -2,26 +2,22 @@ import reportWebVitals from './reportWebVitals';
 import "./styles/null.css";
 import "./styles/main.css";
 import ReactDOM from "react-dom/client";
-import {GetData, subscribe} from "./data/data";
 import React from "react";
 import {BrowserRouter} from "react-router-dom";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Content from "./components/Content";
+import store, {subscribe} from "./data/store";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 let Render = () => {
-    let data = GetData();
-
-    window.data = data;
-
     root.render(
         <React.StrictMode>
             <BrowserRouter>
                 <Header/>
                 <Sidebar/>
-                <Content data={data}/>
+                <Content store={store}/>
             </BrowserRouter>
         </React.StrictMode>
     );

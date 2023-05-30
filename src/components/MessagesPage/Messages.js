@@ -5,15 +5,15 @@ import NewMessage from "./NewMessage";
 
 function Messages(props) {
     let {dialogId} = useParams();
+    let messages = props.store.getMessagesData().messagesData;
 
     return (
         <div className="messages_wrapper">
             <div className="messages">
-                {props.messagesData.map(x => (x.dialogId === dialogId ? <Message obj={x}/> : ""))}
+                {messages.map(x => (x.dialogId === dialogId ? <Message obj={x}/> : ""))}
                 <NewMessage
-                    messagesData={props.messagesData}
+                    store={props.store}
                     dialogId={dialogId}
-                    newMessages={props.newMessages}
                 />
             </div>
         </div>

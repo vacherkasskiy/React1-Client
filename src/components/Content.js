@@ -8,16 +8,13 @@ function Content(props) {
         <div className={"content"}>
             <Routes>
                 <Route path={'/profile'} element={<Profile
-                    userData={props.data.userData}
-                    postsData={props.data.postsData}
-                    newPosts={props.data.newPosts}
+                    store={props.store}
                 />}/>
                 <Route path={'/messages'} element={<Dialogs
-                    data={props.data.dialogsData}
+                    store={props.store}
                 />}/>
                 <Route path="/messages/:dialogId" element={<Messages
-                    messagesData={props.data.messagesData}
-                    newMessages={props.data.newMessages}
+                    store={props.store}
                 />}/>
             </Routes>
         </div>

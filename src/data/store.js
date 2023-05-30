@@ -93,32 +93,31 @@ let store = {
         "https://github.com/vacherkasskiy"
     ),
 
-    updateNewMessage(text, userId) {
+    _updateNewMessage(text, userId) {
         this._newMessages.find(x => x.userId === userId).text = text;
         render();
     },
 
-    addNewMessage(text, dialogId, id) {
+    _addNewMessage(text, dialogId) {
         let newMessage = new MessageData(
             true,
             text,
             "20:07",
             dialogId,
-            id
         );
 
         this._messagesData.push(newMessage);
         render();
     },
 
-    updateNewPost(text, userId) {
+    _updateNewPost(text, userId) {
         this._newPosts.find(x => x.userId === userId).text = text;
         render();
     },
 
-    addNewPost(message, name, img) {
+    _addNewPost(text, name, img) {
         let newPost = new PostData(
-            message,
+            text,
             name,
             img
         );
@@ -151,19 +150,19 @@ let store = {
 
     dispatch(action) {
         if (action.command === "UPDATE_NEW_MESSAGE") {
-            this.updateNewMessage(action.data);
+            this._updateNewMessage(action.data.text, action.data.userId);
         }
 
         else if (action.command === "ADD_NEW_MESSAGE") {
-            this.addNewMessage(action.data);
+            this._addNewMessage(action.data.text, action.data.dialogId);
         }
 
         else if (action.command === "UPDATE_NEW_POST") {
-            this.updateNewPost(action.data);
+            this._updateNewPost(action.data.text, action.data.userId);
         }
 
         else if (action.command === "ADD_NEW_POST") {
-            this.addNewPost(action.data);
+            this._addNewPost(action.data.text, action.data.name, action.data.img);
         }
     },
 }

@@ -8,12 +8,11 @@ export class DialogData {
 }
 
 export class MessageData {
-    constructor(isOwner, text, dateTime, dialogId, id) {
+    constructor(isOwner, text, dateTime, dialogId) {
         this.isOwner = isOwner;
         this.text = text;
         this.dateTime = dateTime;
         this.dialogId = dialogId;
-        this.id = id;
     }
 }
 
