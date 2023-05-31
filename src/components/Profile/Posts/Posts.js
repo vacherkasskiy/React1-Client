@@ -5,10 +5,10 @@ import avatar from "../../../pictures/man.png"
 import {addNewPostActionCreator, updateNewPostActionCreator} from "../../../redux/reducers/posts_reducer";
 
 function Posts(props) {
-    let postsData = props.store.getPostsData();
-    let posts = postsData.postsData;
-    let newPost = postsData.newPostsData.find(x => x.userId === 1);
-    let userData = props.store.getUserData();
+    let postsData = props.store.getState().postsData;
+    let posts = postsData.posts;
+    let newPost = postsData.newPosts.find(x => x.userId === 1);
+    let userData = props.store.getState().userData;
 
     let newPostTextarea = React.createRef();
     let updateNewPostValue = () => {

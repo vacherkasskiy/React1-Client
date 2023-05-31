@@ -109,26 +109,8 @@ let store = {
         this.render = renderDOM;
     },
 
-    getDialogsData() {
-        return this._state.dialogsData;
-    },
-
-    getMessagesData() {
-        return {
-            messagesData: this._state.messagesData.messages,
-            newMessagesData: this._state.messagesData.newMessages,
-        };
-    },
-
-    getPostsData() {
-        return {
-            postsData: this._state.postsData.posts,
-            newPostsData: this._state.postsData.newPosts,
-        };
-    },
-
-    getUserData() {
-        return this._state.userData;
+    getState() {
+        return this._state;
     },
 
     dispatch(action) {

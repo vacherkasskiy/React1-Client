@@ -3,7 +3,7 @@ import React from "react";
 import {addNewMessageActionCreator, updateNewMessageActionCreator} from "../../redux/reducers/messages_reducer";
 
 function NewMessage(props) {
-    let newMessage = props.store.getMessagesData().newMessagesData.find(x => x.userId === 1);
+    let newMessage = props.store.getState().messagesData.newMessages.find(x => x.userId === 1);
 
     let newMessageTextarea = React.createRef();
     let updateNewMessageValue = () => {

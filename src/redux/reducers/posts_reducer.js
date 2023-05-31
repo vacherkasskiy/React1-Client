@@ -45,4 +45,6 @@ export function postsReducer(state, action) {
     else if (action.command === commands.ADD_NEW_POST) {
         addNewPost(state, action.data.text, action.data.name, action.data.img);
     }
+
+    return state;
 }

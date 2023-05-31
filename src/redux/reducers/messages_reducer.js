@@ -45,4 +45,6 @@ export function messagesReducer(state, action) {
     else if (action.command === "ADD_NEW_MESSAGE") {
         addNewMessage(state, action.data.text, action.data.dialogId);
     }
+
+    return state;
 }

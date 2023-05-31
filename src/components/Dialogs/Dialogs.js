@@ -2,7 +2,7 @@ import Dialog from "./Dialog";
 import "../../styles/Dialogs/Dialogs.css"
 
 function Dialogs(props) {
-    let dialogs = props.store.getDialogsData();
+    let dialogs = props.store.getState().dialogsData;
 
     return (
         <div className="dialogs">
