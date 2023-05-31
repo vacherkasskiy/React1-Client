@@ -7,7 +7,7 @@ import {BrowserRouter} from "react-router-dom";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Content from "./components/Content";
-import store from "./redux/store";
+import store from "./redux/redux-store";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

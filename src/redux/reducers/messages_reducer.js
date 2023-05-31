@@ -1,9 +1,9 @@
 import {commands} from "../store";
-import {MessageData} from "../models";
+import {MessageData, NewMessage} from "../models";
 
 export const updateNewMessageActionCreator = (text, userId) => {
     return {
-        command: commands.UPDATE_NEW_MESSAGE,
+        type: commands.UPDATE_NEW_MESSAGE,
         data: {
             text: text,
             userId: userId,
@@ -13,7 +13,7 @@ export const updateNewMessageActionCreator = (text, userId) => {
 
 export const addNewMessageActionCreator = (text, dialogId) => {
     return {
-        command: commands.ADD_NEW_MESSAGE,
+        type: commands.ADD_NEW_MESSAGE,
         data: {
             text: text,
             dialogId: dialogId,
@@ -36,13 +36,56 @@ function addNewMessage(state, text, dialogId) {
     state.messages.push(newMessage);
 }
 
-export function messagesReducer(state, action) {
+let initialState = {
+    messages: [
+        new MessageData(
+            false,
+            "Some text here",
+            Date.now(),
+            "1",
+            1
+        ),
+        new MessageData(
+            false,
+            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda magni saepe veritatis. Ad animi, assumenda atque consequuntur, deserunt, distinctio esse est libero mollitia nobis numquam odit officia quam rerum saepe!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda magni saepe veritatis. Ad animi, assumenda atque consequuntur, deserunt, distinctio esse est libero mollitia nobis numquam odit officia quam rerum saepe!",
+            Date.now(),
+            "1",
+            2
+        ),
+        new MessageData(
+            false,
+            "Some text here",
+            Date.now(),
+            "2",
+            3
+        ),
+        new MessageData(
+            true,
+            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda magni saepe veritatis. Ad animi, assumenda atque consequuntur, deserunt, distinctio esse est libero mollitia nobis numquam odit officia quam rerum saepe!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda magni saepe veritatis. Ad animi, assumenda atque consequuntur, deserunt, distinctio esse est libero mollitia nobis numquam odit officia quam rerum saepe!",
+            Date.now(),
+            "2",
+            4
+        ),
+        new MessageData(
+            false,
+            "Let's have a walk!",
+            Date.now(),
+            "3",
+            5
+        ),
+    ],
+    newMessages: [
+        new NewMessage("", 1)
+    ],
+};
 
-    if (action.command === "UPDATE_NEW_MESSAGE") {
+export function messagesReducer(state = initialState, action) {
+
+    if (action.type === "UPDATE_NEW_MESSAGE") {
         updateNewMessage(state, action.data.text, action.data.userId);
     }
 
-    else if (action.command === "ADD_NEW_MESSAGE") {
+    else if (action.type === "ADD_NEW_MESSAGE") {
         addNewMessage(state, action.data.text, action.data.dialogId);
     }
 
