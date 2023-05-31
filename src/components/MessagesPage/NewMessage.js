@@ -1,5 +1,6 @@
 import "../../styles/Messages/NewMessage.css";
 import React from "react";
+import {addNewMessageActionCreator, updateNewMessageActionCreator} from "../../data/store";
 
 function NewMessage(props) {
     let newMessage = props.store.getMessagesData().newMessagesData.find(x => x.userId === 1);
@@ -7,39 +8,17 @@ function NewMessage(props) {
     let newMessageTextarea = React.createRef();
     let updateNewMessageValue = () => {
         let value = newMessageTextarea.current.value;
+        let updateMessageAction = updateNewMessageActionCreator(value, 1);
 
-        props.store.dispatch(
-            {
-                command: "UPDATE_NEW_MESSAGE",
-                data: {
-                    text: value,
-                    userId: 1,
-                },
-            }
-        );
+        props.store.dispatch(updateMessageAction);
     }
     let createNewMessage = () => {
         let value = newMessageTextarea.current.value;
+        let updateMessageAction = updateNewMessageActionCreator("", 1);
+        let addMessageAction = addNewMessageActionCreator(value, props.dialogId);
 
-        props.store.dispatch(
-            {
-                command: "UPDATE_NEW_MESSAGE",
-                data: {
-                    text: "",
-                    userId: 1,
-                },
-            }
-        );
-
-        props.store.dispatch(
-            {
-                command: "ADD_NEW_MESSAGE",
-                data: {
-                    text: value,
-                    dialogId: props.dialogId,
-                },
-            }
-        );
+        props.store.dispatch(updateMessageAction);
+        props.store.dispatch(addMessageAction);
     };
 
     return (

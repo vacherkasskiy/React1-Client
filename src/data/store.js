@@ -7,6 +7,13 @@ export let subscribe = (renderDOM) => {
     render = renderDOM;
 }
 
+let commands = {
+    UPDATE_NEW_MESSAGE: "UPDATE_NEW_MESSAGE",
+    ADD_NEW_MESSAGE: "ADD_NEW_MESSAGE",
+    UPDATE_NEW_POST: "UPDATE_NEW_POST",
+    ADD_NEW_POST: "ADD_NEW_POST",
+};
+
 let store = {
     _dialogsData: [
         new DialogData(
@@ -166,5 +173,46 @@ let store = {
         }
     },
 }
+
+export const updateNewMessageActionCreator = (text, userId) => {
+    return {
+        command: commands.UPDATE_NEW_MESSAGE,
+        data: {
+            text: text,
+            userId: userId,
+        },
+    };
+};
+
+export const addNewMessageActionCreator = (text, dialogId) => {
+    return {
+        command: commands.ADD_NEW_MESSAGE,
+        data: {
+            text: text,
+            dialogId: dialogId,
+        },
+    };
+};
+
+export const updateNewPostActionCreator = (text, userId) => {
+    return {
+        command: commands.UPDATE_NEW_POST,
+        data: {
+            text: text,
+            userId: userId,
+        },
+    };
+};
+
+export const addNewPostActionCreator = (text, name, img) => {
+    return {
+        command: commands.ADD_NEW_POST,
+        data: {
+            text: text,
+            name: name,
+            img: img,
+        },
+    };
+};
 
 export default store;

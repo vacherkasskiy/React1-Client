@@ -2,6 +2,7 @@ import "../../../styles/Profile/Posts/Posts.css";
 import Post from "./Post";
 import React from "react";
 import avatar from "../../../pictures/man.png"
+import {addNewPostActionCreator, updateNewPostActionCreator} from "../../../data/store";
 
 function Posts(props) {
     let postsData = props.store.getPostsData();
@@ -12,40 +13,17 @@ function Posts(props) {
     let newPostTextarea = React.createRef();
     let updateNewPostValue = () => {
         let value = newPostTextarea.current.value;
+        let updatePostAction = updateNewPostActionCreator(value, 1);
 
-        props.store.dispatch(
-            {
-                command: "UPDATE_NEW_POST",
-                data: {
-                    text: value,
-                    userId: 1,
-                },
-            }
-        );
+        props.store.dispatch(updatePostAction);
     };
     let createNewPost = () => {
         let value = newPostTextarea.current.value;
+        let updatePostAction = updateNewPostActionCreator("", 1);
+        let addPostAction = addNewPostActionCreator(value, userData.name, avatar);
 
-        props.store.dispatch(
-            {
-                command: "UPDATE_NEW_POST",
-                data: {
-                    text: "",
-                    userId: 1,
-                },
-            }
-        );
-
-        props.store.dispatch(
-            {
-                command: "ADD_NEW_POST",
-                data: {
-                    text: value,
-                    name: userData.name,
-                    img: avatar,
-                },
-            }
-        );
+        props.store.dispatch(updatePostAction);
+        props.store.dispatch(addPostAction);
     };
 
     return (
