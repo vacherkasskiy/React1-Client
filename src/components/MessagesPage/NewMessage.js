@@ -1,6 +1,6 @@
 import "../../styles/Messages/NewMessage.css";
 import React from "react";
-import {addNewMessageActionCreator, updateNewMessageActionCreator} from "../../data/store";
+import {addNewMessageActionCreator, updateNewMessageActionCreator} from "../../redux/reducers/messages_reducer";
 
 function NewMessage(props) {
     let newMessage = props.store.getMessagesData().newMessagesData.find(x => x.userId === 1);

@@ -2,7 +2,7 @@ import "../../../styles/Profile/Posts/Posts.css";
 import Post from "./Post";
 import React from "react";
 import avatar from "../../../pictures/man.png"
-import {addNewPostActionCreator, updateNewPostActionCreator} from "../../../data/store";
+import {addNewPostActionCreator, updateNewPostActionCreator} from "../../../redux/reducers/posts_reducer";
 
 function Posts(props) {
     let postsData = props.store.getPostsData();
