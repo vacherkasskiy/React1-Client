@@ -11,7 +11,7 @@ export let commands = {
 
 let store = {
     _state: {
-        dialogsData: [
+        dialogsPage: [
             new DialogData(
                 "https://assets.wired.com/photos/w_1720/wp-content/uploads/2019/01/Culture_GeeksGuide_Bezos.jpg",
                 "Jeff Bezos",
@@ -28,7 +28,7 @@ let store = {
                 "How are you? :)",
                 3)
         ],
-        messagesData: {
+        messagesPage: {
             messages: [
                 new MessageData(
                     false,
@@ -70,7 +70,7 @@ let store = {
                 new NewMessage("", 1)
             ],
         },
-        postsData: {
+        profilePage: {
             posts: [
                 new PostData(
                     "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda magni saepe veritatis. Ad animi, assumenda atque consequuntur, deserunt, distinctio esse est libero mollitia nobis numquam odit officia quam rerum saepe!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda magni saepe veritatis. Ad animi, assumenda atque consequuntur, deserunt, distinctio esse est libero mollitia nobis numquam odit officia quam rerum saepe!",
@@ -93,7 +93,7 @@ let store = {
             ],
         },
 
-        userData: new UserData(
+        user: new UserData(
             "Cherkasskiy Vitaliy",
             "4th September",
             "Moscow",
@@ -115,8 +115,8 @@ let store = {
 
     dispatch(action) {
 
-        postsReducer(this._state.postsData, action);
-        messagesReducer(this._state.messagesData, action);
+        postsReducer(this._state.profilePage, action);
+        messagesReducer(this._state.messagesPage, action);
         // dialogsReducer
         // ...
 

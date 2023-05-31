@@ -5,7 +5,7 @@ import NewMessage from "./NewMessage";
 
 function Messages(props) {
     let {dialogId} = useParams();
-    let messages = props.store.getState().messagesData.messages;
+    let messages = props.store.getState().messagesPage.messages;
 
     return (
         <div className="messages_wrapper">
