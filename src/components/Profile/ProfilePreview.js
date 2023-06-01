@@ -2,7 +2,7 @@ import "../../styles/Profile/Profile_preview.css";
 import avatar from "../../pictures/man.png"
 
 function ProfilePreview(props) {
-    let userData = props.store.getState().user;
+    let userData = props.userData;
 
     return (
         <div className={"profile-preview"}>

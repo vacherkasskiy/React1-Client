@@ -1,14 +1,14 @@
 import "../../styles/Content.css";
 import ProfilePreview from "./ProfilePreview";
-import Posts from "./Posts/Posts";
+import PostsContainer from "./Posts/PostsContainer";
 
 function Profile(props) {
+    let userData = props.store.getState().user;
+
     return (
         <div className={"content"}>
-            <ProfilePreview store={props.store}/>
-            <Posts
-                store={props.store}
-            />
+            <ProfilePreview userData={userData}/>
+            <PostsContainer store={props.store}/>
         </div>
     );
 }

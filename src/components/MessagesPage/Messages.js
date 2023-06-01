@@ -1,7 +1,7 @@
 import {useParams} from "react-router-dom";
 import "../../styles/Messages/Messages.css";
 import Message from "./Message";
-import NewMessage from "./NewMessage";
+import NewMessageContainer from "./NewMessageContainer";
 
 function Messages(props) {
     let {dialogId} = useParams();
@@ -11,7 +11,7 @@ function Messages(props) {
         <div className="messages_wrapper">
             <div className="messages">
                 {messages.map(x => (x.dialogId === dialogId ? <Message obj={x}/> : ""))}
-                <NewMessage
+                <NewMessageContainer
                     store={props.store}
                     dialogId={dialogId}
                 />
