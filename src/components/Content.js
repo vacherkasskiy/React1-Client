@@ -1,21 +1,15 @@
 import Profile from "./Profile/Profile";
 import {Route, Routes} from "react-router-dom";
-import Dialogs from "./Dialogs/Dialogs";
-import Messages from "./MessagesPage/Messages";
+import DialogsContainer from "./Dialogs/DialogsContainer";
+import MessagesContainer from "./MessagesPage/MessagesContainer";
 
-function Content(props) {
+function Content() {
     return (
         <div className={"content"}>
             <Routes>
-                <Route path={'/profile'} element={<Profile
-                    store={props.store}
-                />}/>
-                <Route path={'/messages'} element={<Dialogs
-                    store={props.store}
-                />}/>
-                <Route path="/messages/:dialogId" element={<Messages
-                    store={props.store}
-                />}/>
+                <Route path={'/profile'} element={<Profile/>}/>
+                <Route path={'/messages'} element={<DialogsContainer/>}/>
+                <Route path="/messages/:dialogId" element={<MessagesContainer />}/>
             </Routes>
         </div>
     );

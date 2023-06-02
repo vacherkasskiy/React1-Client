@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Content from "./components/Content";
 import store from "./redux/redux-store";
+import {Provider} from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -15,9 +16,11 @@ let Render = () => {
     root.render(
         <React.StrictMode>
             <BrowserRouter>
-                <Header/>
-                <Sidebar/>
-                <Content store={store}/>
+                <Provider store={store}>
+                    <Header />
+                    <Sidebar />
+                    <Content />
+                </Provider>
             </BrowserRouter>
         </React.StrictMode>
     );

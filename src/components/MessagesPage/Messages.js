@@ -5,16 +5,12 @@ import NewMessageContainer from "./NewMessageContainer";
 
 function Messages(props) {
     let {dialogId} = useParams();
-    let messages = props.store.getState().messagesPage.messages;
 
     return (
         <div className="messages_wrapper">
             <div className="messages">
-                {messages.map(x => (x.dialogId === dialogId ? <Message obj={x}/> : ""))}
-                <NewMessageContainer
-                    store={props.store}
-                    dialogId={dialogId}
-                />
+                {props.messages.map(x => (x.dialogId === dialogId ? <Message obj={x}/> : ""))}
+                <NewMessageContainer dialogId={dialogId}/>
             </div>
         </div>
     );
