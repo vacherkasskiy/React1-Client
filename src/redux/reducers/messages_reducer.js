@@ -22,18 +22,25 @@ export const addNewMessageActionCreator = (text, dialogId) => {
 };
 
 function updateNewMessage(state, text, userId) {
-    state.newMessages.find(x => x.userId === userId).text = text;
+    let stateCopy = {...state};
+    stateCopy.newMessages = [...state.newMessages];
+    stateCopy.newMessages.find(x => x.userId === userId).text = text;
+
+    return stateCopy;
 }
 
 function addNewMessage(state, text, dialogId) {
+    let stateCopy = {...state};
+    stateCopy.messages = [...state.messages];
     let newMessage = new MessageData(
         true,
         text,
         "20:07",
         dialogId,
     );
+    stateCopy.messages.push(newMessage);
 
-    state.messages.push(newMessage);
+    return stateCopy;
 }
 
 let initialState = {
@@ -82,12 +89,10 @@ let initialState = {
 export function messagesReducer(state = initialState, action) {
 
     if (action.type === "UPDATE_NEW_MESSAGE") {
-        updateNewMessage(state, action.data.text, action.data.userId);
+        return updateNewMessage(state, action.data.text, action.data.userId);
     }
 
-    else if (action.type === "ADD_NEW_MESSAGE") {
-        addNewMessage(state, action.data.text, action.data.dialogId);
+    if (action.type === "ADD_NEW_MESSAGE") {
+        return  addNewMessage(state, action.data.text, action.data.dialogId);
     }
-
-    return state;
 }
