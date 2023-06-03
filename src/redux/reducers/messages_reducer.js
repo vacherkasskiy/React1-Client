@@ -93,6 +93,8 @@ export function messagesReducer(state = initialState, action) {
     }
 
     if (action.type === "ADD_NEW_MESSAGE") {
-        return  addNewMessage(state, action.data.text, action.data.dialogId);
+        return addNewMessage(state, action.data.text, action.data.dialogId);
     }
+
+    return state;
 }

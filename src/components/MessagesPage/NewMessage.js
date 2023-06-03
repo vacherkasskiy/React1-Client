@@ -20,7 +20,7 @@ function NewMessage(props) {
             <textarea
                 ref={newMessageTextarea}
                 onChange={updateNewMessageValue}
-                value={props.newMessage.text}
+                value={props.newMessageText}
             ></textarea>
             <button onClick={createNewMessage}>Send</button>
         </div>

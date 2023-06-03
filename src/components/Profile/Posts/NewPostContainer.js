@@ -4,10 +4,12 @@ import NewPost from "./NewPost";
 
 let mapStateToProps = (state) => {
     let postsData = state.profilePage;
+    let userData = state.user;
     let newPost = postsData.newPosts.find(x => x.userId === 1);
 
     return {
         newPostText: newPost.text,
+        userName: userData.name,
     };
 };
 

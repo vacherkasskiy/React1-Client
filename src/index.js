@@ -12,6 +12,8 @@ import {Provider} from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
+window.store = store;
+
 let Render = () => {
     root.render(
         <React.StrictMode>

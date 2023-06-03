@@ -6,7 +6,7 @@ let mapStateToProps = (state, ownProps) => {
     let newMessage = state.messagesPage.newMessages.find(x => x.userId === 1);
 
     return {
-        newMessage: newMessage,
+        newMessageText: newMessage.text,
         dialogId: ownProps.dialogId,
     };
 };
@@ -15,6 +15,7 @@ let mapDispatchToProps = (dispatch) => {
     return {
         onUpdateNewMessage: (value, userId) => {
             let updateMessageAction = updateNewMessageActionCreator(value, userId);
+            debugger
             dispatch(updateMessageAction);
         },
         onCreateNewMessage: (value, dialogId) => {

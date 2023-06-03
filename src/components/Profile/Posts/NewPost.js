@@ -1,5 +1,4 @@
 import "../../../styles/Profile/Posts/NewPost.css";
-import Post from "./Post";
 import React from "react";
 import avatar from "../../../pictures/man.png";
 

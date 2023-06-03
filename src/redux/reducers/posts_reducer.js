@@ -69,10 +69,12 @@ let initialState = {
 export function postsReducer(state = initialState, action) {
 
     if (action.type === commands.UPDATE_NEW_POST) {
-        return  updateNewPost(state, action.data.text, action.data.userId);
+        return updateNewPost(state, action.data.text, action.data.userId);
     }
 
     if (action.type === commands.ADD_NEW_POST) {
         return addNewPost(state, action.data.text, action.data.name, action.data.img);
     }
+
+    return state;
 }
