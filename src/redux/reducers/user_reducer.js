@@ -40,7 +40,7 @@ let initialState = {
             "Moscow",
             "HSE '25",
             "https://github.com/vacherkasskiy",
-            "https://i.pinimg.com/originals/7a/bb/3f/7abb3f4b67f81bdb1a1e97836e03ee40.jpg"
+            "https://res.cloudinary.com/jerrick/image/upload/c_scale,f_jpg,q_auto/jrsbekxaroxa3r7wxvfc.jpg"
         ),
     ],
 };

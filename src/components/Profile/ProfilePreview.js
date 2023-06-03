@@ -1,4 +1,4 @@
-import "../../styles/Profile/Profile_preview.css";
+import "../../styles/Profile/ProfilePreview.css";
 
 function ProfilePreview(props) {
     let userData = props.userData;

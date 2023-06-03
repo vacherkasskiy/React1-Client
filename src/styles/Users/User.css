@@ -1,0 +1,58 @@
+.user {
+    width: 90%;
+    position: relative;
+}
+
+.user .profile-preview {
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.user:not(:last-child):after {
+    content: '';
+    margin: 30px auto 10px auto;
+    display: block;
+    width: 80%;
+    height: 2px;
+    background-color: #424242;
+}
+
+.user:last-child {
+    padding-bottom: 30px;
+}
+
+.user .info__main-info {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.user .info__name {
+    font-size: 17px;
+}
+
+.user .profile-preview__avatar {
+    width: 80px;
+    height: 80px;
+}
+
+.user__follow {
+    position: absolute;
+    right: 0;
+    top: 40%;
+    padding: 15px;
+    width: 100px;
+    font-size: 16px;
+    font-family: sans-serif;
+    color: red;
+    border: 3px red solid;
+    border-radius: 5px;
+    transition-property: color, background-color, border;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.2s;
+}
+
+.user__follow.active {
+    font-weight: 600;
+    background-color: red;
+    color: unset !important;
+}
