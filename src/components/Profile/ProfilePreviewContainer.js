@@ -3,7 +3,7 @@ import ProfilePreview from "./ProfilePreview";
 
 let mapStateToProps = (state) => {
     return {
-        userData: state.user,
+        userData: state.user.currentUser,
     }
 }
 

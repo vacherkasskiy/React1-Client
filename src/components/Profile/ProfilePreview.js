@@ -1,12 +1,11 @@
 import "../../styles/Profile/Profile_preview.css";
-import avatar from "../../pictures/man.png"
 
 function ProfilePreview(props) {
     let userData = props.userData;
 
     return (
         <div className={"profile-preview"}>
-            <img src={avatar} alt="" className={"profile-preview__avatar"}/>
+            <img src={userData.image} alt="" className={"profile-preview__avatar"}/>
             <div className={"profile-preview__info"}>
                 <p className={"info__name"}>{userData.name}</p>
                 <div className={"info__main-info"}>

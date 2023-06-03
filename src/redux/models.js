@@ -25,12 +25,13 @@ export class PostData {
 }
 
 export class UserData {
-    constructor(name, birthday, city, education, website) {
+    constructor(name, birthday, city, education, website, image) {
         this.name = name;
         this.birthday = birthday;
         this.city = city;
         this.education = education;
         this.website = website;
+        this.image = image;
     }
 }
 

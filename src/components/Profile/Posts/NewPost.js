@@ -1,6 +1,5 @@
 import "../../../styles/Profile/Posts/NewPost.css";
 import React from "react";
-import avatar from "../../../pictures/man.png";
 
 function NewPost(props) {
     let newPostTextarea = React.createRef();
@@ -14,7 +13,7 @@ function NewPost(props) {
         let value = newPostTextarea.current.value;
 
         props.onUpdatePostValue("", 1);
-        props.onAddPost(value, props.userName, avatar);
+        props.onAddPost(value, props.user.name, props.user.image);
     };
 
     return (
