@@ -22,16 +22,22 @@ export const addNewMessageActionCreator = (text, dialogId) => {
 };
 
 function updateNewMessage(state, text, userId) {
-    let stateCopy = {...state};
-    stateCopy.newMessages = [...state.newMessages];
-    stateCopy.newMessages.find(x => x.userId === userId).text = text;
-
-    return stateCopy;
+    return {
+        ...state,
+        newMessages: state.newMessages.map(x => {
+            if (x.userId === userId) {
+                return {...x, text: text};
+            }
+            return x;
+        }),
+    };
 }
 
 function addNewMessage(state, text, dialogId) {
-    let stateCopy = {...state};
-    stateCopy.messages = [...state.messages];
+    let stateCopy = {
+        ...state,
+        messages: [...state.messages],
+    };
     let newMessage = new MessageData(
         true,
         text,

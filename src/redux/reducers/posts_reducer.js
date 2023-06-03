@@ -23,16 +23,22 @@ export const addNewPostActionCreator = (text, name, img) => {
 };
 
 function updateNewPost(state, text, userId) {
-    let stateCopy = {...state};
-    stateCopy.newPosts = [...state.newPosts];
-    stateCopy.newPosts.find(x => x.userId === userId).text = text;
-
-    return stateCopy;
+    return {
+        ...state,
+        newPosts: state.newPosts.map(x => {
+            if (x.userId === userId) {
+                return {...x, text: text};
+            }
+            return x;
+        })
+    };
 }
 
 function addNewPost(state, text, name, img) {
-    let stateCopy = {...state};
-    stateCopy.posts = [...state.posts];
+    let stateCopy = {
+        ...state,
+        posts: [...state.posts],
+    };
     let newPost = new PostData(
         text,
         name,
