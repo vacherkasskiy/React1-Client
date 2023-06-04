@@ -9,10 +9,14 @@ import Sidebar from "./components/Sidebar";
 import Content from "./components/Content";
 import store from "./redux/redux-store";
 import {Provider} from "react-redux";
+import axios from "axios";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 window.store = store;
+window.users = axios
+    .get("https://localhost:7072/users/get_users")
+    .then(response => response.data);
 
 let Render = () => {
     root.render(
