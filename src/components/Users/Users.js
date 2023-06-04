@@ -1,24 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import axios from "axios";
 import User from "./User";
 
-function Users(props) {
-    const [users, setUsers] = useState([]);
+class Users extends React.Component {
+    users = [];
 
-    useEffect(() => {
+    componentDidMount() {
         axios
             .get("https://localhost:7072/users/get_users")
             .then(response => {
-                setUsers(response.data);
-            })
-    }, []);
+                this.users = response.data;
+                this.forceUpdate();
+            });
+    }
 
-    return (
-        <div className="users">
-            {/*{props.users.map(x => <User data={x} />}*/}
-            {users.map(x => <User data={x}/>)}
-        </div>
-    );
+    render() {
+        return (
+            <div className="users">
+                {this.users.map(x => <User data={x}/>)}
+            </div>
+        );
+    }
 }
 
 export default Users;
