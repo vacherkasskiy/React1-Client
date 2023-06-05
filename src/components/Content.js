@@ -10,8 +10,8 @@ function Content() {
             <Routes>
                 <Route path={'/profile'} element={<Profile/>}/>
                 <Route path={'/messages'} element={<DialogsContainer/>}/>
-                <Route path="/messages/:dialogId" element={<MessagesContainer />}/>
-                <Route path="/users" element={<UsersContainer />}/>
+                <Route path="/messages/:dialogId" element={<MessagesContainer/>}/>
+                <Route path="/users" element={<UsersContainer/>}/>
             </Routes>
         </div>
     );

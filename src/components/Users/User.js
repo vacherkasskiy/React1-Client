@@ -4,7 +4,7 @@ import "../../styles/Users/User.css";
 function User(props) {
     return (
         <div className="user">
-            <ProfilePreview userData={props.data} />
+            <ProfilePreview userData={props.data}/>
             <button
                 onClick={() => (props.data.isFollowed ? props.onUnFollow(props.data.id) : props.onFollow(props.data.id))}
                 className={"user__follow" + (props.data.isFollowed ? " active" : "")}>

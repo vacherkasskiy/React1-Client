@@ -7,7 +7,7 @@ function Posts(props) {
     return (
         <div className={"posts"}>
             <h1 className={"posts__header"}>Posts</h1>
-            <NewPostContainer />
+            <NewPostContainer/>
             {props.posts.map(x => <Post obj={x}/>)}
         </div>
     );

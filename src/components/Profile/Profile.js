@@ -5,8 +5,8 @@ import ProfilePreviewContainer from "./ProfilePreviewContainer";
 function Profile() {
     return (
         <div className={"content"}>
-            <ProfilePreviewContainer />
-            <PostsContainer />
+            <ProfilePreviewContainer/>
+            <PostsContainer/>
         </div>
     );
 }

@@ -3,7 +3,8 @@ import {
     followActionCreator,
     setCurrentPageActionCreator,
     setUsersActionCreator,
-    setUsersAmountActionCreator, unfollowActionCreator
+    setUsersAmountActionCreator,
+    unfollowActionCreator,
 } from "../../redux/reducers/user_reducer";
 import React from "react";
 import axios from "axios";
@@ -34,7 +35,7 @@ class UsersAPIContainer extends React.Component {
                 this.props.setUsersAmount(usersAmount);
                 this.props.setUsers(users);
 
-                this.setState({ pages: pages });
+                this.setState({pages: pages});
             });
     }
 
@@ -69,7 +70,7 @@ class UsersAPIContainer extends React.Component {
     }
 
     render() {
-        const { pages } = this.state;
+        const {pages} = this.state;
 
         return (
             <Users

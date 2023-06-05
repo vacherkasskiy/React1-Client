@@ -23,9 +23,9 @@ let Render = () => {
         <React.StrictMode>
             <BrowserRouter>
                 <Provider store={store}>
-                    <Header />
-                    <Sidebar />
-                    <Content />
+                    <Header/>
+                    <Sidebar/>
+                    <Content/>
                 </Provider>
             </BrowserRouter>
         </React.StrictMode>

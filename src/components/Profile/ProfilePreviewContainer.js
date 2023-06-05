@@ -7,7 +7,8 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {};
+let mapDispatchToProps = (dispatch) => {
+};
 
 const ProfilePreviewContainer =
     connect(mapStateToProps, mapDispatchToProps)(ProfilePreview);

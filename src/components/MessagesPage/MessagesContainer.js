@@ -9,7 +9,8 @@ let mapStateToProps = (state) => {
     };
 };
 
-let mapDispatchToProps = (dispatch) => {};
+let mapDispatchToProps = (dispatch) => {
+};
 
 const MessagesContainer =
     connect(mapStateToProps, mapDispatchToProps)(Messages);
