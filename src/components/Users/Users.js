@@ -15,7 +15,12 @@ function Users(props) {
                 ))}
             </div>
             {props.users.map((x) => (
-                <User key={x.id} data={x} />
+                <User
+                    key={x.id}
+                    data={x}
+                    onFollow={props.onFollow}
+                    onUnFollow={props.onUnFollow}
+                />
             ))}
         </div>
     );

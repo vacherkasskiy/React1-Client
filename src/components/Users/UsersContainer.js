@@ -1,8 +1,9 @@
 import {connect} from "react-redux";
 import {
+    followActionCreator,
     setCurrentPageActionCreator,
     setUsersActionCreator,
-    setUsersAmountActionCreator
+    setUsersAmountActionCreator, unfollowActionCreator
 } from "../../redux/reducers/user_reducer";
 import React from "react";
 import axios from "axios";
@@ -37,6 +38,26 @@ class UsersAPIContainer extends React.Component {
             });
     }
 
+    follow = (userId) => {
+        axios
+            .patch(`https://localhost:7072/users/follow_user/` + userId)
+            .then(response => {
+                if (response.status === 200) {
+                    this.props.follow(userId);
+                }
+            });
+    }
+
+    unfollow = (userId) => {
+        axios
+            .patch(`https://localhost:7072/users/unfollow_user/` + userId)
+            .then(response => {
+                if (response.status === 200) {
+                    this.props.unfollow(userId);
+                }
+            });
+    }
+
     componentDidMount() {
         this.sendAPIRequest();
     }
@@ -56,6 +77,8 @@ class UsersAPIContainer extends React.Component {
                 pageOnClick={this.props.setCurrentPage}
                 currentPage={this.props.currentPage}
                 users={this.props.users}
+                onFollow={this.follow}
+                onUnFollow={this.unfollow}
             />
         );
     }
@@ -84,6 +107,14 @@ let mapDispatchToProps = (dispatch) => {
             let setUsersAction = setUsersActionCreator(users);
             dispatch(setUsersAction);
         },
+        follow: (userId) => {
+            let followAction = followActionCreator(userId);
+            dispatch(followAction);
+        },
+        unfollow: (userId) => {
+            let unfollowAction = unfollowActionCreator(userId);
+            dispatch(unfollowAction);
+        }
     };
 };
 

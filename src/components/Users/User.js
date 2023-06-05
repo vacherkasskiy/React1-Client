@@ -1,19 +1,14 @@
 import ProfilePreview from "../Profile/ProfilePreview";
 import "../../styles/Users/User.css";
-import {useState} from "react";
 
 function User(props) {
-    let [isFollowing, follow] = useState(false);
-
-    let onclick = () => {
-        follow(!isFollowing);
-    }
-
     return (
         <div className="user">
             <ProfilePreview userData={props.data} />
-            <button onClick={onclick} className={"user__follow" + (isFollowing ? " active" : "")}>
-                {isFollowing ? "Unfollow" : "Follow"}
+            <button
+                onClick={() => (props.data.isFollowed ? props.onUnFollow(props.data.id) : props.onFollow(props.data.id))}
+                className={"user__follow" + (props.data.isFollowed ? " active" : "")}>
+                {props.data.isFollowed ? "Unfollow" : "Follow"}
             </button>
         </div>
     );
