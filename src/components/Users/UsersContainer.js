@@ -91,6 +91,7 @@ let mapStateToProps = (state) => {
         currentPage: state.user.usersPage.currentPage,
         pageCapacity: state.user.usersPage.pageCapacity,
         usersAmount: state.user.usersPage.usersAmount,
+        isFetching: state.user.usersPage.isFetching,
     };
 };
 

@@ -5,6 +5,7 @@ const SET_USERS_AMOUNT = "SET_USERS_AMOUNT";
 const SET_USERS = "SET_USERS";
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
+const SET_IS_FETCHING = "SET_IS_FETCHING";
 
 export let setCurrentPageActionCreator = (page) => {
     return {
@@ -47,6 +48,15 @@ export let unfollowActionCreator = (userId) => {
         type: UNFOLLOW,
         data: {
             userId: userId,
+        },
+    };
+}
+
+export let setIsFetchingActionCreator = (isFetching) => {
+    return {
+        type: SET_IS_FETCHING,
+        data: {
+            isFetching: isFetching,
         },
     };
 }
@@ -108,6 +118,16 @@ let unfollow = (state, userId) => {
     };
 };
 
+let setIsFetching = (state, isFetching) => {
+    return {
+        ...state,
+        usersPage: {
+            ...state.usersPage,
+            isFetching: isFetching,
+        },
+    };
+};
+
 let initialState = {
     currentUser: new UserData(
         0,
@@ -124,6 +144,7 @@ let initialState = {
         currentPage: 1,
         pageCapacity: 5,
         usersAmount: 0,
+        isFetching: false,
     },
 };
 
@@ -146,6 +167,10 @@ export function userReducer(state = initialState, action) {
 
     if (action.type === UNFOLLOW) {
         return unfollow(state, action.data.userId)
+    }
+
+    if (action.type === SET_IS_FETCHING) {
+        return setIsFetching(state, action.data.isFetching)
     }
 
     return state;
