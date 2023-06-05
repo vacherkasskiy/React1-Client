@@ -1,9 +1,11 @@
-import {commands} from "../store";
 import {MessageData, NewMessage} from "../models";
+
+const UPDATE_NEW_MESSAGE = "UPDATE_NEW_MESSAGE";
+const ADD_NEW_MESSAGE = "ADD_NEW_MESSAGE";
 
 export const updateNewMessageActionCreator = (text, userId) => {
     return {
-        type: commands.UPDATE_NEW_MESSAGE,
+        type: UPDATE_NEW_MESSAGE,
         data: {
             text: text,
             userId: userId,
@@ -13,7 +15,7 @@ export const updateNewMessageActionCreator = (text, userId) => {
 
 export const addNewMessageActionCreator = (text, dialogId) => {
     return {
-        type: commands.ADD_NEW_MESSAGE,
+        type: ADD_NEW_MESSAGE,
         data: {
             text: text,
             dialogId: dialogId,
@@ -94,11 +96,11 @@ let initialState = {
 
 export function messagesReducer(state = initialState, action) {
 
-    if (action.type === "UPDATE_NEW_MESSAGE") {
+    if (action.type === UPDATE_NEW_MESSAGE) {
         return updateNewMessage(state, action.data.text, action.data.userId);
     }
 
-    if (action.type === "ADD_NEW_MESSAGE") {
+    if (action.type === ADD_NEW_MESSAGE) {
         return addNewMessage(state, action.data.text, action.data.dialogId);
     }
 

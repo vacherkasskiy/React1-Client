@@ -1,9 +1,11 @@
-import {commands} from "../store";
 import {NewPost, PostData} from "../models";
+
+const UPDATE_NEW_POST = "UPDATE_NEW_POST";
+const ADD_NEW_POST = "ADD_NEW_POST";
 
 export const updateNewPostActionCreator = (text, userId) => {
     return {
-        type: commands.UPDATE_NEW_POST,
+        type: UPDATE_NEW_POST,
         data: {
             text: text,
             userId: userId,
@@ -13,7 +15,7 @@ export const updateNewPostActionCreator = (text, userId) => {
 
 export const addNewPostActionCreator = (text, name, img) => {
     return {
-        type: commands.ADD_NEW_POST,
+        type: ADD_NEW_POST,
         data: {
             text: text,
             name: name,
@@ -74,11 +76,11 @@ let initialState = {
 
 export function postsReducer(state = initialState, action) {
 
-    if (action.type === commands.UPDATE_NEW_POST) {
+    if (action.type === UPDATE_NEW_POST) {
         return updateNewPost(state, action.data.text, action.data.userId);
     }
 
-    if (action.type === commands.ADD_NEW_POST) {
+    if (action.type === ADD_NEW_POST) {
         return addNewPost(state, action.data.text, action.data.name, action.data.img);
     }
 

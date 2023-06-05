@@ -2,13 +2,6 @@ import {DialogData, MessageData, NewMessage, NewPost, PostData, UserData} from "
 import {postsReducer} from "./reducers/posts_reducer";
 import {messagesReducer} from "./reducers/messages_reducer";
 
-export let commands = {
-    UPDATE_NEW_MESSAGE: "UPDATE_NEW_MESSAGE",
-    ADD_NEW_MESSAGE: "ADD_NEW_MESSAGE",
-    UPDATE_NEW_POST: "UPDATE_NEW_POST",
-    ADD_NEW_POST: "ADD_NEW_POST",
-};
-
 let store = {
     _state: {
         dialogsPage: [
