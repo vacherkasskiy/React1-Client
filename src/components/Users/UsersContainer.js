@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import {
     followActionCreator,
-    setCurrentPageActionCreator,
+    setCurrentPageActionCreator, setIsFetchingActionCreator,
     setUsersActionCreator,
     setUsersAmountActionCreator,
     unfollowActionCreator,
@@ -16,6 +16,7 @@ class UsersAPIContainer extends React.Component {
     }
 
     sendAPIRequest() {
+        this.props.setIsFetching(true);
         axios
             .get(
                 "https://localhost:7072/users/get_users?skip=" +
@@ -34,6 +35,7 @@ class UsersAPIContainer extends React.Component {
 
                 this.props.setUsersAmount(usersAmount);
                 this.props.setUsers(users);
+                this.props.setIsFetching(false);
 
                 this.setState({pages: pages});
             });
@@ -80,6 +82,7 @@ class UsersAPIContainer extends React.Component {
                 users={this.props.users}
                 onFollow={this.follow}
                 onUnFollow={this.unfollow}
+                isFetching={this.props.isFetching}
             />
         );
     }
@@ -116,6 +119,10 @@ let mapDispatchToProps = (dispatch) => {
         unfollow: (userId) => {
             let unfollowAction = unfollowActionCreator(userId);
             dispatch(unfollowAction);
+        },
+        setIsFetching: (isFetching) => {
+            let setIsFetchingAction = setIsFetchingActionCreator(isFetching);
+            dispatch(setIsFetchingAction);
         }
     };
 };
