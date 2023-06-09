@@ -10,7 +10,7 @@ import settingsPic from "../pictures/Navbar/settings.png";
 function Sidebar() {
     return (
         <div className={"sidebar"}>
-            <NavLink to={'/profile'} className={"sidebar__section"}>
+            <NavLink to={'/profile/0'} className={"sidebar__section"}>
                 <div>
                     <img src={profilePic} alt=""/>
                     Profile

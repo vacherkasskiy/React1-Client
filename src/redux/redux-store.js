@@ -1,14 +1,14 @@
 import {messagesReducer} from "./reducers/messages_reducer";
-import {postsReducer} from "./reducers/posts_reducer";
+import {profileReducer} from "./reducers/profile_reducer";
 import {combineReducers, legacy_createStore as createStore} from "redux";
 import {dialogsReducer} from "./reducers/dialogs_reducer";
-import {userReducer} from "./reducers/user_reducer";
+import {usersReducer} from "./reducers/users_reducer";
 
 let reducers = combineReducers({
     messagesPage: messagesReducer,
-    profilePage: postsReducer,
+    profilePage: profileReducer,
     dialogsPage: dialogsReducer,
-    user: userReducer,
+    user: usersReducer,
 });
 
 let store = createStore(reducers);

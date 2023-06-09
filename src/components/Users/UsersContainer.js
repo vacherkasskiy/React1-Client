@@ -5,7 +5,7 @@ import {
     setUsersActionCreator,
     setUsersAmountActionCreator,
     unfollowActionCreator,
-} from "../../redux/reducers/user_reducer";
+} from "../../redux/reducers/users_reducer";
 import React from "react";
 import axios from "axios";
 import Users from "./Users";

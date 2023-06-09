@@ -1,5 +1,5 @@
 import {DialogData, MessageData, NewMessage, NewPost, PostData, UserData} from "./models";
-import {postsReducer} from "./reducers/posts_reducer";
+import {profileReducer} from "./reducers/profile_reducer";
 import {messagesReducer} from "./reducers/messages_reducer";
 
 let store = {
@@ -108,7 +108,7 @@ let store = {
 
     dispatch(action) {
 
-        postsReducer(this._state.profilePage, action);
+        profileReducer(this._state.profilePage, action);
         messagesReducer(this._state.messagesPage, action);
         // dialogsReducer
         // ...

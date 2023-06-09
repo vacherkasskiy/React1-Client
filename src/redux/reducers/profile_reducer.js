@@ -2,6 +2,7 @@ import {NewPost, PostData} from "../models";
 
 const UPDATE_NEW_POST = "UPDATE_NEW_POST";
 const ADD_NEW_POST = "ADD_NEW_POST";
+const SET_PROFILE_DATA = "SET_PROFILE_DATA";
 
 export const updateNewPostActionCreator = (text, userId) => {
     return {
@@ -20,6 +21,15 @@ export const addNewPostActionCreator = (text, name, img) => {
             text: text,
             name: name,
             img: img,
+        },
+    };
+};
+
+export const setProfileDataActionCreator = (user) => {
+    return {
+        type: SET_PROFILE_DATA,
+        data: {
+            user: user,
         },
     };
 };
@@ -51,7 +61,15 @@ function addNewPost(state, text, name, img) {
     return stateCopy;
 }
 
+function setUserData(state, user) {
+    return {
+        ...state,
+        user: user,
+    }
+}
+
 let initialState = {
+    user: null,
     posts: [
         new PostData(
             "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda magni saepe veritatis. Ad animi, assumenda atque consequuntur, deserunt, distinctio esse est libero mollitia nobis numquam odit officia quam rerum saepe!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda magni saepe veritatis. Ad animi, assumenda atque consequuntur, deserunt, distinctio esse est libero mollitia nobis numquam odit officia quam rerum saepe!",
@@ -74,7 +92,7 @@ let initialState = {
     ],
 };
 
-export function postsReducer(state = initialState, action) {
+export function profileReducer(state = initialState, action) {
 
     if (action.type === UPDATE_NEW_POST) {
         return updateNewPost(state, action.data.text, action.data.userId);
@@ -82,6 +100,10 @@ export function postsReducer(state = initialState, action) {
 
     if (action.type === ADD_NEW_POST) {
         return addNewPost(state, action.data.text, action.data.name, action.data.img);
+    }
+
+    if (action.type === SET_PROFILE_DATA) {
+        return setUserData(state, action.data.user);
     }
 
     return state;
