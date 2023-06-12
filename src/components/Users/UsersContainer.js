@@ -1,14 +1,15 @@
 import {connect} from "react-redux";
 import {
     followActionCreator,
-    setCurrentPageActionCreator, setIsFetchingActionCreator,
+    setCurrentPageActionCreator,
+    setIsFetchingActionCreator,
     setUsersActionCreator,
     setUsersAmountActionCreator,
     unfollowActionCreator,
 } from "../../redux/reducers/users_reducer";
 import React from "react";
-import axios from "axios";
 import Users from "./Users";
+import {followUser, getUsers, unfollowUser} from "../../api/usersAPI";
 
 class UsersAPIContainer extends React.Component {
     state = {
@@ -17,48 +18,32 @@ class UsersAPIContainer extends React.Component {
 
     sendAPIRequest() {
         this.props.setIsFetching(true);
-        axios
-            .get(
-                "https://localhost:7072/users/get_users?skip=" +
-                ((this.props.currentPage - 1) * this.props.pageCapacity) +
-                "&amount=" +
-                this.props.pageCapacity
-            )
-            .then((response) => {
-                const users = response.data.users;
-                const usersAmount = response.data.usersAmount;
+        const data = getUsers(this.props.currentPage, this.props.pages);
+        const users = data.users;
+        const usersAmount = data.usersAmount;
 
-                const pages = [];
-                for (let i = 1; i <= Math.ceil(usersAmount / this.props.pageCapacity); ++i) {
-                    pages.push(i);
-                }
+        const pages = [];
+        for (let i = 1; i <= Math.ceil(usersAmount / this.props.pageCapacity); ++i) {
+            pages.push(i);
+        }
 
-                this.props.setUsersAmount(usersAmount);
-                this.props.setUsers(users);
-                this.props.setIsFetching(false);
+        this.props.setUsersAmount(usersAmount);
+        this.props.setUsers(users);
+        this.props.setIsFetching(false);
 
-                this.setState({pages: pages});
-            });
+        this.setState({pages: pages});
     }
 
     follow = (userId) => {
-        axios
-            .patch(`https://localhost:7072/users/follow_user/` + userId)
-            .then(response => {
-                if (response.status === 200) {
-                    this.props.follow(userId);
-                }
-            });
+        if (followUser(userId) === 200) {
+            this.props.follow(userId);
+        }
     }
 
     unfollow = (userId) => {
-        axios
-            .patch(`https://localhost:7072/users/unfollow_user/` + userId)
-            .then(response => {
-                if (response.status === 200) {
-                    this.props.unfollow(userId);
-                }
-            });
+        if (unfollowUser(userId) === 200) {
+            this.props.unfollow(userId);
+        }
     }
 
     componentDidMount() {
