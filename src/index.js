@@ -3,13 +3,14 @@ import "./styles/null.css";
 import "./styles/main.css";
 import ReactDOM from "react-dom/client";
 import React from "react";
-import {BrowserRouter} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Content from "./components/Content";
 import store from "./redux/redux-store";
 import {Provider} from "react-redux";
 import axios from "axios";
+import LoginPageContainer from "./components/Auth/LoginPageContainer";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -19,13 +20,22 @@ window.users = axios
     .then(response => response.data);
 
 let Render = () => {
+    const location = window.location.pathname;
+
     root.render(
         <React.StrictMode>
             <BrowserRouter>
                 <Provider store={store}>
-                    <Header/>
-                    <Sidebar/>
-                    <Content/>
+                    {location === '/login' ? null : (
+                        <>
+                            <Header />
+                            <Sidebar />
+                            <Content />
+                        </>
+                    )}
+                    <Routes>
+                        <Route path="/login" element={<LoginPageContainer/>} />
+                    </Routes>
                 </Provider>
             </BrowserRouter>
         </React.StrictMode>
