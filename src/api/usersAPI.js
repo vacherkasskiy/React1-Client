@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const getUsers = (currentPage, pageCapacity) => {
+    debugger;
     return (
         axios
             .get(

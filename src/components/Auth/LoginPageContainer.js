@@ -4,7 +4,7 @@ import {loginUser} from "../../api/authAPI";
 
 class LoginPageContainer extends React.Component {
     login = (login, password) => {
-        loginUser(login, password); // COOKIES DO NOT SAVE
+        //loginUser(login, password); // COOKIES DO NOT SAVE
     }
 
     render() {

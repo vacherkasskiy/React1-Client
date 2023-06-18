@@ -18,21 +18,25 @@ class UsersAPIContainer extends React.Component {
 
     sendAPIRequest() {
         this.props.setIsFetching(true);
-        const data = getUsers(this.props.currentPage, this.props.pages);
-        const users = data.users;
-        const usersAmount = data.usersAmount;
 
-        const pages = [];
-        for (let i = 1; i <= Math.ceil(usersAmount / this.props.pageCapacity); ++i) {
-            pages.push(i);
-        }
+        getUsers(this.props.currentPage, this.props.pageCapacity)
+            .then(data => {
+                const users = data.users;
+                const usersAmount = data.usersAmount;
 
-        this.props.setUsersAmount(usersAmount);
-        this.props.setUsers(users);
-        this.props.setIsFetching(false);
+                const pages = [];
+                for (let i = 1; i <= Math.ceil(usersAmount / this.props.pageCapacity); ++i) {
+                    pages.push(i);
+                }
 
-        this.setState({pages: pages});
+                this.props.setUsersAmount(usersAmount);
+                this.props.setUsers(users);
+                this.props.setIsFetching(false);
+
+                this.setState({pages: pages});
+            });
     }
+
 
     follow = (userId) => {
         if (followUser(userId) === 200) {
@@ -74,6 +78,7 @@ class UsersAPIContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => {
+    debugger;
     return {
         users: state.user.users,
         currentPage: state.user.usersPage.currentPage,
