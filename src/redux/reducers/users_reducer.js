@@ -6,6 +6,7 @@ const SET_USERS = "SET_USERS";
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_IS_FETCHING = "SET_IS_FETCHING";
+const TOGGLE_BUTTON = "TOGGLE_BUTTON";
 
 export let setCurrentPageActionCreator = (page) => {
     return {
@@ -41,7 +42,7 @@ export let followActionCreator = (userId) => {
             userId: userId,
         },
     };
-}
+};
 
 export let unfollowActionCreator = (userId) => {
     return {
@@ -50,7 +51,7 @@ export let unfollowActionCreator = (userId) => {
             userId: userId,
         },
     };
-}
+};
 
 export let setIsFetchingActionCreator = (isFetching) => {
     return {
@@ -59,7 +60,17 @@ export let setIsFetchingActionCreator = (isFetching) => {
             isFetching: isFetching,
         },
     };
-}
+};
+
+export let toggleButtonActionCreator = (buttonId, isButtonEnabled) => {
+    return {
+        type: TOGGLE_BUTTON,
+        data: {
+            buttonId: buttonId,
+            isButtonEnabled: isButtonEnabled
+        }
+    }
+};
 
 let setCurrentPage = (state, page) => {
     return {
@@ -128,6 +139,29 @@ let setIsFetching = (state, isFetching) => {
     };
 };
 
+let toggleButton = (state, buttonId, isButtonEnabled) => {
+    if (isButtonEnabled) {
+        return {
+            ...state,
+            usersPage: {
+                ...state.usersPage,
+                disabledButtonIdsArray: state.usersPage.disabledButtonIdsArray.filter(id=> id !== buttonId)
+            }
+        };
+    } else {
+        return {
+            ...state,
+            usersPage: {
+                ...state.usersPage,
+                disabledButtonIdsArray: [
+                    ...state.usersPage.disabledButtonIdsArray,
+                    buttonId
+                ]
+            }
+        }
+    }
+};
+
 let initialState = {
     currentUser: new UserData(
         0,
@@ -145,6 +179,7 @@ let initialState = {
         pageCapacity: 5,
         usersAmount: 0,
         isFetching: false,
+        disabledButtonIdsArray: []
     },
 };
 
@@ -171,6 +206,10 @@ export function usersReducer(state = initialState, action) {
 
     if (action.type === SET_IS_FETCHING) {
         return setIsFetching(state, action.data.isFetching)
+    }
+
+    if (action.type === TOGGLE_BUTTON) {
+        return toggleButton(state, action.data.buttonId, action.data.isButtonEnabled);
     }
 
     return state;

@@ -4,7 +4,7 @@ import {
     setCurrentPageActionCreator,
     setIsFetchingActionCreator,
     setUsersActionCreator,
-    setUsersAmountActionCreator,
+    setUsersAmountActionCreator, toggleButtonActionCreator,
     unfollowActionCreator,
 } from "../../redux/reducers/users_reducer";
 import React from "react";
@@ -31,23 +31,33 @@ class UsersAPIContainer extends React.Component {
 
                 this.props.setUsersAmount(usersAmount);
                 this.props.setUsers(users);
-                this.props.setIsFetching(false);
-
                 this.setState({pages: pages});
+
+                this.props.setIsFetching(false);
             });
     }
 
 
     follow = (userId) => {
-        if (followUser(userId) === 200) {
-            this.props.follow(userId);
-        }
+        this.props.toggleButton(userId, false);
+        followUser(userId)
+            .then((status) => {
+                if (status === 200) {
+                    this.props.follow(userId);
+                    this.props.toggleButton(userId, true);
+                }
+            });
     }
 
     unfollow = (userId) => {
-        if (unfollowUser(userId) === 200) {
-            this.props.unfollow(userId);
-        }
+        this.props.toggleButton(userId, false);
+        unfollowUser(userId)
+            .then((status) => {
+                if (status === 200) {
+                    this.props.unfollow(userId);
+                    this.props.toggleButton(userId, true);
+                }
+            });
     }
 
     componentDidMount() {
@@ -72,19 +82,20 @@ class UsersAPIContainer extends React.Component {
                 onFollow={this.follow}
                 onUnFollow={this.unfollow}
                 isFetching={this.props.isFetching}
+                disabledButtonIdsArray={this.props.disabledButtonIdsArray}
             />
         );
     }
 }
 
 let mapStateToProps = (state) => {
-    debugger;
     return {
         users: state.user.users,
         currentPage: state.user.usersPage.currentPage,
         pageCapacity: state.user.usersPage.pageCapacity,
         usersAmount: state.user.usersPage.usersAmount,
         isFetching: state.user.usersPage.isFetching,
+        disabledButtonIdsArray: state.user.usersPage.disabledButtonIdsArray,
     };
 };
 
@@ -113,6 +124,10 @@ let mapDispatchToProps = (dispatch) => {
         setIsFetching: (isFetching) => {
             let setIsFetchingAction = setIsFetchingActionCreator(isFetching);
             dispatch(setIsFetchingAction);
+        },
+        toggleButton: (buttonId, isEnabled) => {
+            let toggleButtonAction = toggleButtonActionCreator(buttonId, isEnabled);
+            dispatch(toggleButtonAction);
         }
     };
 };

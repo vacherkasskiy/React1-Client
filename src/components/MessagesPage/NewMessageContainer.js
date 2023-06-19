@@ -15,7 +15,6 @@ let mapDispatchToProps = (dispatch) => {
     return {
         onUpdateNewMessage: (value, userId) => {
             let updateMessageAction = updateNewMessageActionCreator(value, userId);
-            debugger
             dispatch(updateMessageAction);
         },
         onCreateNewMessage: (value, dialogId) => {

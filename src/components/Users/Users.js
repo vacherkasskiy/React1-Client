@@ -24,6 +24,7 @@ function Users(props) {
                     <User
                         key={x.id}
                         data={x}
+                        isButtonEnabled={!props.disabledButtonIdsArray.includes(x.id)}
                         onFollow={props.onFollow}
                         onUnFollow={props.onUnFollow}
                     />
