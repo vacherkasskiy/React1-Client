@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const getUsers = (currentPage, pageCapacity) => {
+export const getUsersRequest = (currentPage, pageCapacity) => {
     return (
         axios
             .get(
@@ -15,7 +15,7 @@ export const getUsers = (currentPage, pageCapacity) => {
     );
 };
 
-export const followUser = (userId) => {
+export const followUserRequest = (userId) => {
     return (
         axios
             .patch(`https://localhost:7072/users/follow_user/` + userId)
@@ -25,7 +25,7 @@ export const followUser = (userId) => {
     );
 };
 
-export const unfollowUser = (userId) => {
+export const unfollowUserRequest = (userId) => {
     return (
         axios
             .patch(`https://localhost:7072/users/unfollow_user/` + userId)

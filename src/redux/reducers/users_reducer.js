@@ -83,11 +83,17 @@ let setCurrentPage = (state, page) => {
 };
 
 let setUsersAmount = (state, usersAmount) => {
+    let pages = [];
+    for (let i = 1; i <= Math.ceil(usersAmount / state.usersPage.pageCapacity); ++i) {
+        pages.push(i);
+    }
+
     return {
         ...state,
         usersPage: {
             ...state.usersPage,
             usersAmount: usersAmount,
+            pages: pages,
         }
     }
 };
@@ -178,6 +184,7 @@ let initialState = {
         currentPage: 1,
         pageCapacity: 5,
         usersAmount: 0,
+        pages: [],
         isFetching: false,
         disabledButtonIdsArray: []
     },
