@@ -1,61 +1,29 @@
 import {connect} from "react-redux";
 import {
-    followActionCreator,
+    followThunk,
     setCurrentPageActionCreator,
-    setIsFetchingActionCreator,
-    setUsersActionCreator,
-    setUsersAmountActionCreator, toggleButtonActionCreator,
-    unfollowActionCreator,
+    setUsersThunk,
+    unfollowThunk,
 } from "../../redux/reducers/users_reducer";
 import React from "react";
 import Users from "./Users";
-import {followUserRequest, getUsersRequest, unfollowUserRequest} from "../../api/usersAPI";
 
 class UsersAPIContainer extends React.Component {
-    sendAPIRequest() {
-        this.props.setIsFetching(true);
-
-        getUsersRequest(this.props.currentPage, this.props.pageCapacity)
-            .then(data => {
-                const users = data.users;
-                const usersAmount = data.usersAmount;
-
-                this.props.setUsersAmount(usersAmount);
-                this.props.setUsers(users);
-                this.props.setIsFetching(false);
-            });
-    }
-
-
     follow = (userId) => {
-        this.props.toggleButton(userId, false);
-        followUserRequest(userId)
-            .then((status) => {
-                if (status === 200) {
-                    this.props.follow(userId);
-                    this.props.toggleButton(userId, true);
-                }
-            });
+        this.props.followThunk(userId);
     }
 
     unfollow = (userId) => {
-        this.props.toggleButton(userId, false);
-        unfollowUserRequest(userId)
-            .then((status) => {
-                if (status === 200) {
-                    this.props.unfollow(userId);
-                    this.props.toggleButton(userId, true);
-                }
-            });
+        this.props.unfollow(userId);
     }
 
     componentDidMount() {
-        this.sendAPIRequest();
+        this.props.getUsersThunk(this.props.currentPage, this.props.pageCapacity);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.currentPage !== this.props.currentPage) {
-            this.sendAPIRequest();
+            this.props.getUsersThunk(this.props.currentPage, this.props.pageCapacity);
         }
     }
 
@@ -89,34 +57,18 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        setUsersAmount: (usersAmount) => {
-            let setUsersAmountAction = setUsersAmountActionCreator(usersAmount);
-            dispatch(setUsersAmountAction);
-        },
         setCurrentPage: (page) => {
-            let setCurrentPageAction = setCurrentPageActionCreator(page);
-            dispatch(setCurrentPageAction);
+            dispatch(setCurrentPageActionCreator(page));
         },
-        setUsers: (users) => {
-            let setUsersAction = setUsersActionCreator(users);
-            dispatch(setUsersAction);
+        getUsersThunk: (currentPage, pageCapacity) => {
+            dispatch(setUsersThunk(currentPage, pageCapacity));
         },
-        follow: (userId) => {
-            let followAction = followActionCreator(userId);
-            dispatch(followAction);
+        followThunk: (userId) => {
+            dispatch(followThunk(userId));
         },
         unfollow: (userId) => {
-            let unfollowAction = unfollowActionCreator(userId);
-            dispatch(unfollowAction);
+            dispatch(unfollowThunk(userId));
         },
-        setIsFetching: (isFetching) => {
-            let setIsFetchingAction = setIsFetchingActionCreator(isFetching);
-            dispatch(setIsFetchingAction);
-        },
-        toggleButton: (buttonId, isEnabled) => {
-            let toggleButtonAction = toggleButtonActionCreator(buttonId, isEnabled);
-            dispatch(toggleButtonAction);
-        }
     };
 };
 

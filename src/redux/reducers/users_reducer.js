@@ -1,4 +1,5 @@
 import {UserData} from "../models";
+import {followUserRequest, getUsersRequest, unfollowUserRequest} from "../../api/usersAPI";
 
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_USERS_AMOUNT = "SET_USERS_AMOUNT";
@@ -167,6 +168,48 @@ let toggleButton = (state, buttonId, isButtonEnabled) => {
         }
     }
 };
+
+export const setUsersThunk = (currentPage, pageCapacity) => {
+    return (dispatch) => {
+        dispatch(setIsFetchingActionCreator(true));
+
+        getUsersRequest(currentPage, pageCapacity)
+            .then(data => {
+                const users = data.users;
+                const usersAmount = data.usersAmount;
+
+                dispatch(setUsersAmountActionCreator(usersAmount));
+                dispatch(setUsersActionCreator(users));
+                dispatch(setIsFetchingActionCreator(false));
+            });
+    }
+}
+
+export const followThunk = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleButtonActionCreator(userId, false));
+        followUserRequest(userId)
+            .then((status) => {
+                if (status === 200) {
+                    dispatch(followActionCreator(userId));
+                    dispatch(toggleButtonActionCreator(userId, true));
+                }
+            });
+    };
+}
+
+export const unfollowThunk = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleButtonActionCreator(userId, false));
+        unfollowUserRequest(userId)
+            .then((status) => {
+                if (status === 200) {
+                    dispatch(unfollowActionCreator(userId));
+                    dispatch(toggleButtonActionCreator(userId, true));
+                }
+            });
+    };
+}
 
 let initialState = {
     currentUser: new UserData(
