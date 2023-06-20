@@ -1,8 +1,10 @@
 import {NewPost, PostData} from "../models";
+import {getUserRequest} from "../../api/profileAPI";
 
 const UPDATE_NEW_POST = "UPDATE_NEW_POST";
 const ADD_NEW_POST = "ADD_NEW_POST";
 const SET_PROFILE_DATA = "SET_PROFILE_DATA";
+const SET_IS_FETCHING = "SET_IS_FETCHING";
 
 export const updateNewPostActionCreator = (text, userId) => {
     return {
@@ -33,6 +35,15 @@ export const setProfileDataActionCreator = (user) => {
         },
     };
 };
+
+export const toggleIsFetchingActionCreator = (isFetching) => {
+    return {
+        type: SET_IS_FETCHING,
+        data: {
+            isFetching: isFetching,
+        }
+    }
+}
 
 function updateNewPost(state, text, userId) {
     return {
@@ -68,7 +79,26 @@ function setUserData(state, user) {
     }
 }
 
+const setIsFetching = (state, isFetching) => {
+    return {
+        ...state,
+        isFetching: isFetching,
+    }
+};
+
+export const setUserDataThunk = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleIsFetchingActionCreator(true));
+        getUserRequest(userId)
+            .then(data => {
+                dispatch(setProfileDataActionCreator(data));
+                dispatch(toggleIsFetchingActionCreator(false));
+            });
+    };
+}
+
 let initialState = {
+    isFetching: false,
     user: null,
     posts: [
         new PostData(
@@ -104,6 +134,10 @@ export function profileReducer(state = initialState, action) {
 
     if (action.type === SET_PROFILE_DATA) {
         return setUserData(state, action.data.user);
+    }
+
+    if (action.type === SET_IS_FETCHING) {
+        return setIsFetching(state, action.data.isFetching);
     }
 
     return state;

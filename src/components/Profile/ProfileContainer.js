@@ -1,13 +1,12 @@
 import React from 'react';
-import axios from "axios";
 import {connect} from "react-redux";
 import ProfilePreview from "./ProfilePreview";
 import Posts from "./Posts/Posts";
-import {setProfileDataActionCreator} from "../../redux/reducers/profile_reducer";
+import {setUserDataThunk} from "../../redux/reducers/profile_reducer";
 import Preloader from "../Preloader";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 
-function withRouter(Component) {
+function withRouter() {
     function ComponentWithRouterProp(props) {
         let location = useLocation();
         let navigate = useNavigate();
@@ -25,27 +24,19 @@ function withRouter(Component) {
 
 class ProfileAPIContainer extends React.Component {
     profileId = this.props.router.params.profileId;
-    sendAPIRequest(userId) {
-        axios
-            .get(`https://localhost:7072/users/get_user/${userId}`)
-            .then(response => {
-                if (response.status === 200) {
-                    let user = response.data;
-                    this.props.setProfileData(user);
-                }
-            })
-    }
 
     componentDidMount() {
-        this.sendAPIRequest(this.profileId);
+        this.props.setUserDataThunk(this.profileId);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        this.sendAPIRequest(this.profileId);
+        if (this.profileId !== prevProps.router.params.profileId) {
+            this.props.setUserDataThunk(this.profileId);
+        }
     }
 
     render() {
-        if (!this.props.userData) {
+        if (this.props.isFetching || !this.props.userData) {
             return(
                 <Preloader />
             );
@@ -66,22 +57,18 @@ class ProfileAPIContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => {
-    let postsData = state.profilePage;
-    let posts = postsData.posts;
-    let userData = state.profilePage.user;
-
     return {
-        userData: userData,
-        posts: posts,
+        userData: state.profilePage.user,
+        posts: state.profilePage.posts,
+        isFetching: state.profilePage.isFetching,
     };
 };
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        setProfileData: (user) => {
-            let action = setProfileDataActionCreator(user);
-            dispatch(action);
-        }
+        setUserDataThunk: (userId) => {
+            dispatch(setUserDataThunk(userId));
+        },
     }
 };
 
