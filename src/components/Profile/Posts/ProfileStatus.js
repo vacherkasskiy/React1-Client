@@ -1,39 +1,36 @@
 import "../../../styles/Profile/ProfileStatus.css";
-import React from 'react';
+import React, {createRef} from 'react';
 import {connect} from "react-redux";
-import {toggleEditModeActionCreator} from "../../../redux/reducers/profile_reducer";
-import {setStatusRequest} from "../../../api/profileAPI";
+import {setStatusThunk} from "../../../redux/reducers/profile_reducer";
 
 class ProfileStatus extends React.Component {
-    statusValue = React.createRef();
-    onBlur = () => {
-        this.props.toggleEditMode(false);
-        setStatusRequest(this.props.id, this.statusValue.current.value)
-            .then(() => {
-                this.forceUpdate();
-            });
+    statusInput = createRef();
+    state = {
+        editMode: false,
+        status: this.props.status
+    };
+    toggleEditMode = (editMode) => {
+        this.setState({editMode: editMode});
     }
-    onClick = () => {
-        this.props.toggleEditMode(true);
+    setStatus = (status) => {
+        this.setState({status: status});
     }
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.editMode !== this.props.editMode) {
-            this.forceUpdate();
-        }
-    }
-
     render() {
         if (!this.props.flag) {
             return (<></>);
         }
-        else if (this.props.editMode || this.props.status === null) {
+        else if (this.state.editMode || this.state.status === null) {
             return (
                 <div className={"status"}>
                     <input
-                        ref={this.statusValue}
+                        ref={this.statusInput}
+                        onInput={() => this.setStatus(this.statusInput.current.value)}
                         autoFocus={true}
-                        onBlur={() => this.onBlur()}
-                        defaultValue={this.props.status}
+                        onBlur={() => {
+                            this.toggleEditMode(false);
+                            this.props.setStatusThunk(this.props.id, this.state.status);
+                        }}
+                        defaultValue={this.state.status}
                         className="status__text"></input>
                 </div>
             );
@@ -41,8 +38,8 @@ class ProfileStatus extends React.Component {
             return (
                 <div className={"status"}>
                     <p
-                        onClick={() => this.onClick()}
-                        className="status__text">{this.props.status}</p>
+                        onClick={() => this.toggleEditMode(true)}
+                        className="status__text">{this.state.status}</p>
                 </div>
             );
         }
@@ -51,14 +48,13 @@ class ProfileStatus extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        editMode: state.profilePage.editMode,
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        toggleEditMode: (editMode) => {
-            dispatch(toggleEditModeActionCreator(editMode));
+        setStatusThunk: (userId, status) => {
+            dispatch(setStatusThunk(userId, status));
         },
     };
 }

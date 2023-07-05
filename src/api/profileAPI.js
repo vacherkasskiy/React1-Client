@@ -21,5 +21,8 @@ export const setStatusRequest = (userId, status) => {
                     return response.data;
                 }
             })
+            .catch(() => {
+                console.log("something went wrong");
+            })
     );
 }
