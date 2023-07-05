@@ -5,6 +5,8 @@ const UPDATE_NEW_POST = "UPDATE_NEW_POST";
 const ADD_NEW_POST = "ADD_NEW_POST";
 const SET_PROFILE_DATA = "SET_PROFILE_DATA";
 const SET_IS_FETCHING = "SET_IS_FETCHING";
+const TOGGLE_EDIT_MODE = "TOGGLE_EDIT_MODE";
+const SET_STATUS = "SET_STATUS";
 
 export const updateNewPostActionCreator = (text, userId) => {
     return {
@@ -43,6 +45,15 @@ export const toggleIsFetchingActionCreator = (isFetching) => {
             isFetching: isFetching,
         }
     }
+}
+
+export const toggleEditModeActionCreator = (editMode) => {
+    return {
+        type: TOGGLE_EDIT_MODE,
+        data: {
+            editMode: editMode,
+        }
+    };
 }
 
 function updateNewPost(state, text, userId) {
@@ -86,6 +97,13 @@ const setIsFetching = (state, isFetching) => {
     }
 };
 
+const toggleEditMode = (state, editMode) => {
+    return {
+        ...state,
+        editMode: editMode,
+    }
+}
+
 export const setUserDataThunk = (userId) => {
     return (dispatch) => {
         dispatch(toggleIsFetchingActionCreator(true));
@@ -98,6 +116,7 @@ export const setUserDataThunk = (userId) => {
 }
 
 let initialState = {
+    editMode: false,
     isFetching: false,
     user: null,
     posts: [
@@ -138,6 +157,10 @@ export function profileReducer(state = initialState, action) {
 
     if (action.type === SET_IS_FETCHING) {
         return setIsFetching(state, action.data.isFetching);
+    }
+
+    if (action.type === TOGGLE_EDIT_MODE) {
+        return toggleEditMode(state, action.data.editMode);
     }
 
     return state;

@@ -1,5 +1,6 @@
 import "../../styles/Profile/ProfilePreview.css";
 import {NavLink} from "react-router-dom";
+import ProfileStatus from "./Posts/ProfileStatus";
 
 function ProfilePreview(props) {
     let userData = props.userData;
@@ -11,6 +12,10 @@ function ProfilePreview(props) {
             </NavLink>
             <div className={"profile-preview__info"}>
                 <p className={"info__name"}>{userData.name}</p>
+                <ProfileStatus
+                    flag={props.flag}
+                    id={userData.id}
+                    status={userData.status} />
                 <div className={"info__main-info"}>
                     <div className={"main-info__section"}>
                         <p className={"property"}>Date of birth:</p>

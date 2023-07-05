@@ -45,6 +45,7 @@ class ProfileAPIContainer extends React.Component {
                 <>
                     <ProfilePreview
                         userData={this.props.userData}
+                        flag={true}
                     />
                     <Posts
                         userName={this.props.userName}

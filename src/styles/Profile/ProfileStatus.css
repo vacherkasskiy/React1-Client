@@ -1,0 +1,22 @@
+.status {
+
+}
+
+input.status__text {
+    margin: 10px 0;
+    border-bottom: 2px solid red;
+    cursor: pointer;
+    width: 350px;
+    font-family: sans-serif;
+    font-size: 14px;
+    color: rgba(255, 0, 0, 0.5);
+    border-radius: 2px;
+}
+
+p.status__text {
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-family: sans-serif;
+    font-size: 14px;
+    color: rgba(255, 0, 0, 0.5);
+}

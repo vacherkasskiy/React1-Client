@@ -11,3 +11,15 @@ export const getUserRequest = (userId) => {
             })
     );
 };
+
+export const setStatusRequest = (userId, status) => {
+    return (
+        axios
+            .post(`https://localhost:7072/users/set_status?UserId=${userId}&Status=${status}`)
+            .then(response => {
+                if (response.status === 200) {
+                    return response.data;
+                }
+            })
+    );
+}
