@@ -14,7 +14,7 @@ class UsersAPIContainer extends React.Component {
     }
 
     unfollow = (userId) => {
-        this.props.unfollow(userId);
+        this.props.unfollowThunk(userId);
     }
 
     componentDidMount() {
@@ -66,7 +66,7 @@ let mapDispatchToProps = (dispatch) => {
         followThunk: (userId) => {
             dispatch(followThunk(userId));
         },
-        unfollow: (userId) => {
+        unfollowThunk: (userId) => {
             dispatch(unfollowThunk(userId));
         },
     };
