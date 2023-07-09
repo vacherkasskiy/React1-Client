@@ -10,7 +10,7 @@ import Content from './components/Content';
 import store from './redux/redux-store';
 import { Provider } from 'react-redux';
 import axios from 'axios';
-import LoginPageContainer from './components/Auth/LoginPageContainer';
+import LoginPage from "./components/Auth/LoginPage";
 
 window.store = store;
 window.users = axios.get('https://localhost:7072/users/get_users').then(response => response.data);
@@ -30,7 +30,7 @@ const Render = () => {
                         </>
                     )}
                     <Routes>
-                        <Route path="/login" element={<LoginPageContainer />} />
+                        <Route path="/login" element={<LoginPage />} />
                         <Route
                             path="/"
                             element={
