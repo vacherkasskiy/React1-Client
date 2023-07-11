@@ -1,14 +1,21 @@
-import "../../styles/Profile/Profile_preview.css";
-import avatar from "../../pictures/man.png"
+import "../../styles/Profile/ProfilePreview.css";
+import {NavLink} from "react-router-dom";
+import ProfileStatus from "./Posts/ProfileStatus";
 
 function ProfilePreview(props) {
-    let userData = props.store.getUserData();
+    let userData = props.userData;
 
     return (
         <div className={"profile-preview"}>
-            <img src={avatar} alt="" className={"profile-preview__avatar"}/>
+            <NavLink to={`/profile/${userData.id}`}>
+                <img src={userData.image} alt="" className={"profile-preview__avatar"}/>
+            </NavLink>
             <div className={"profile-preview__info"}>
                 <p className={"info__name"}>{userData.name}</p>
+                <ProfileStatus
+                    flag={props.flag}
+                    id={userData.id}
+                    status={userData.status} />
                 <div className={"info__main-info"}>
                     <div className={"main-info__section"}>
                         <p className={"property"}>Date of birth:</p>

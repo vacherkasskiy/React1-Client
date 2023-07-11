@@ -1,24 +1,18 @@
 import "../../styles/Messages/NewMessage.css";
 import React from "react";
-import {addNewMessageActionCreator, updateNewMessageActionCreator} from "../../redux/reducers/messages_reducer";
 
 function NewMessage(props) {
-    let newMessage = props.store.getMessagesData().newMessagesData.find(x => x.userId === 1);
-
     let newMessageTextarea = React.createRef();
     let updateNewMessageValue = () => {
         let value = newMessageTextarea.current.value;
-        let updateMessageAction = updateNewMessageActionCreator(value, 1);
 
-        props.store.dispatch(updateMessageAction);
+        props.onUpdateNewMessage(value, 1);
     }
     let createNewMessage = () => {
         let value = newMessageTextarea.current.value;
-        let updateMessageAction = updateNewMessageActionCreator("", 1);
-        let addMessageAction = addNewMessageActionCreator(value, props.dialogId);
 
-        props.store.dispatch(updateMessageAction);
-        props.store.dispatch(addMessageAction);
+        props.onUpdateNewMessage("", 1);
+        props.onCreateNewMessage(value, props.dialogId);
     };
 
     return (
@@ -26,7 +20,7 @@ function NewMessage(props) {
             <textarea
                 ref={newMessageTextarea}
                 onChange={updateNewMessageValue}
-                value={newMessage.text}
+                value={props.newMessageText}
             ></textarea>
             <button onClick={createNewMessage}>Send</button>
         </div>

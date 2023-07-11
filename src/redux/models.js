@@ -25,12 +25,15 @@ export class PostData {
 }
 
 export class UserData {
-    constructor(name, birthday, city, education, website) {
+    constructor(id, name, birthday, city, education, website, image, isFollowed) {
+        this.id = id;
         this.name = name;
         this.birthday = birthday;
         this.city = city;
         this.education = education;
         this.website = website;
+        this.image = image;
+        this.isFollowed = isFollowed;
     }
 }
 

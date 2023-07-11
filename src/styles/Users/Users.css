@@ -1,0 +1,24 @@
+.pages__buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+.pages__buttons > * {
+    cursor: pointer;
+    margin: 0 5px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-family: sans-serif;
+    font-weight: 600;
+    background-color: #363c48;
+    color: white;
+    border-radius: 50%;
+}
+
+.pages__buttons > *.active {
+    background-color: red;
+}

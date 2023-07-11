@@ -1,17 +1,10 @@
 import {DialogData, MessageData, NewMessage, NewPost, PostData, UserData} from "./models";
-import {postsReducer} from "./reducers/posts_reducer";
+import {profileReducer} from "./reducers/profile_reducer";
 import {messagesReducer} from "./reducers/messages_reducer";
-
-export let commands = {
-    UPDATE_NEW_MESSAGE: "UPDATE_NEW_MESSAGE",
-    ADD_NEW_MESSAGE: "ADD_NEW_MESSAGE",
-    UPDATE_NEW_POST: "UPDATE_NEW_POST",
-    ADD_NEW_POST: "ADD_NEW_POST",
-};
 
 let store = {
     _state: {
-        dialogsData: [
+        dialogsPage: [
             new DialogData(
                 "https://assets.wired.com/photos/w_1720/wp-content/uploads/2019/01/Culture_GeeksGuide_Bezos.jpg",
                 "Jeff Bezos",
@@ -28,7 +21,7 @@ let store = {
                 "How are you? :)",
                 3)
         ],
-        messagesData: {
+        messagesPage: {
             messages: [
                 new MessageData(
                     false,
@@ -70,7 +63,7 @@ let store = {
                 new NewMessage("", 1)
             ],
         },
-        postsData: {
+        profilePage: {
             posts: [
                 new PostData(
                     "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda magni saepe veritatis. Ad animi, assumenda atque consequuntur, deserunt, distinctio esse est libero mollitia nobis numquam odit officia quam rerum saepe!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda magni saepe veritatis. Ad animi, assumenda atque consequuntur, deserunt, distinctio esse est libero mollitia nobis numquam odit officia quam rerum saepe!",
@@ -93,7 +86,7 @@ let store = {
             ],
         },
 
-        userData: new UserData(
+        user: new UserData(
             "Cherkasskiy Vitaliy",
             "4th September",
             "Moscow",
@@ -109,32 +102,14 @@ let store = {
         this.render = renderDOM;
     },
 
-    getDialogsData() {
-        return this._state.dialogsData;
-    },
-
-    getMessagesData() {
-        return {
-            messagesData: this._state.messagesData.messages,
-            newMessagesData: this._state.messagesData.newMessages,
-        };
-    },
-
-    getPostsData() {
-        return {
-            postsData: this._state.postsData.posts,
-            newPostsData: this._state.postsData.newPosts,
-        };
-    },
-
-    getUserData() {
-        return this._state.userData;
+    getState() {
+        return this._state;
     },
 
     dispatch(action) {
 
-        postsReducer(this._state.postsData, action);
-        messagesReducer(this._state.messagesData, action);
+        profileReducer(this._state.profilePage, action);
+        messagesReducer(this._state.messagesPage, action);
         // dialogsReducer
         // ...
 
@@ -142,5 +117,3 @@ let store = {
 
     },
 }
-
-export default store;
