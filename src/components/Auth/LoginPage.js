@@ -30,15 +30,14 @@ function LoginPage() {
                         .required("Password is required"),
                 })
             }
-            onSubmit={(values) => {
+            onSubmit={(values, {setFieldError}) => {
                 axios.post("https://localhost:7072/auth/register", values)
                     .then(response => {
                         console.log("Success", response.data);
                     })
                     .catch(() => {
                         console.log("Failure");
-                        // somehow add error to validator
-                        // (already existing email)
+                        setFieldError("email", "User with such email already exists");
                     });
                 window.location.href = "http://localhost:3000/users";
             }}
