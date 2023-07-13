@@ -34,12 +34,12 @@ function LoginPage() {
                 axios.post("https://localhost:7072/auth/register", values)
                     .then(response => {
                         console.log("Success", response.data);
+                        window.location.href = "http://localhost:3000/users";
                     })
                     .catch(() => {
                         console.log("Failure");
                         setFieldError("email", "User with such email already exists");
                     });
-                window.location.href = "http://localhost:3000/users";
             }}
         >
             <div className={"login_page"}>
