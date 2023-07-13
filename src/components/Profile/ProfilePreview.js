@@ -1,6 +1,6 @@
 import "../../styles/Profile/ProfilePreview.css";
 import {NavLink} from "react-router-dom";
-import ProfileStatus from "./Posts/ProfileStatus";
+import ProfileStatus from "./Posts/ProfileStatusContainer";
 
 function ProfilePreview(props) {
     let userData = props.userData;

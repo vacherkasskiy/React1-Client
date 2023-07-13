@@ -1,15 +1,12 @@
 import {connect} from "react-redux";
 import {addNewPostActionCreator, updateNewPostActionCreator} from "../../../redux/reducers/profile_reducer";
 import NewPost from "./NewPost";
+import {getNewPostText, getUser} from "./NewPostSelectors";
 
 let mapStateToProps = (state) => {
-    let postsData = state.profilePage;
-    let userData = state.user.currentUser;
-    let newPost = postsData.newPosts.find(x => x.userId === 1);
-
     return {
-        newPostText: newPost.text,
-        user: userData,
+        newPostText: getNewPostText(state),
+        user: getUser(state),
     };
 };
 

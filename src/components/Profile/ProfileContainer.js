@@ -5,6 +5,7 @@ import Posts from "./Posts/Posts";
 import {setUserDataThunk} from "../../redux/reducers/profile_reducer";
 import Preloader from "../Preloader";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
+import {getIsFetching, getPosts, getUserData} from "./ProfileSelectors";
 
 function withRouter() {
     function ComponentWithRouterProp(props) {
@@ -59,9 +60,9 @@ class ProfileAPIContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        userData: state.profilePage.user,
-        posts: state.profilePage.posts,
-        isFetching: state.profilePage.isFetching,
+        userData: getUserData(state),
+        posts: getPosts(state),
+        isFetching: getIsFetching(state),
     };
 };
 
